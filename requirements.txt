@@ -1,0 +1,13 @@
+pylint
+autopep8
+sklearn
+numpy
+sounddevice
+scipy
+soundfile
+opencv-python
+matplotlib
+ipykernel
+librosa
+tensorflow
+keras
