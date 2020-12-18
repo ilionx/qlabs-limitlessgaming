@@ -1,0 +1,19 @@
+Add Title here...
+
+Extra desription if needed...
+# ** Help **:
+# 
+#   Add: Create a capability e.g. feature, test, dependency.
+#   Drop: Delete a capability e.g. feature, test, dependency.
+#   Fix: Fix an issue e.g. bug, typo, accident, misstatement.
+#   Optimize: A change that MUST be just about performance, e.g. speed up code.
+#   Document: A change that MUST be only in the documentation, e.g. help files.
+#   Refactor: A change that MUST be just refactoring.
+#   Reformat: A change that MUST be just formatting, e.g. change spaces.
+#   Rearrange: A change that MUST be just arranging, e.g. change layout, arrange files.
+#
+#
+# ** Usage **:
+#   this use the commit template use the following command
+#   `git config commit.template ./docs/.commit-template`
+#

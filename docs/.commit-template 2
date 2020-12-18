@@ -1,0 +1,24 @@
+# Source: https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit
+## HEADER
+<type>(<scope>): <short summary>
+# │       │             │
+# │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
+# │       │
+# │       └─⫸ Commit Scope: animations|bazel|benchpress|common|compiler|compiler-cli|core|
+# │                          elements|forms|http|language-service|localize|platform-browser|
+# │                          platform-browser-dynamic|platform-server|router|service-worker|
+# │                          upgrade|zone.js|packaging|changelog|dev-infra|docs-infra|migrations|
+# │                          ngcc|ve
+# │
+# └─⫸ Commit Type: Build|Ci|Docs|Feat|Fix|Perf|Refactor|Test|Rearrange
+
+## BODY
+<Description>
+
+## FOOTER
+BREAKING CHANGE: <breaking change summary>
+# <BLANK LINE>
+<breaking change description + migration instructions>
+# <BLANK LINE>
+# <BLANK LINE>
+Fixes #<issue number>
