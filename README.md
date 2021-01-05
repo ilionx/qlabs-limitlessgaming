@@ -18,11 +18,13 @@ have a look at [the background](#background)
   - [License](#license)
   - [INSTALL](#install)
     - [Preparation (Windows and MacOS)](#preparation-windows-and-macos)
+      - [Check installation](#check-installation)
     - [Preparation (Linux)](#preparation-linux)
+      - [Check installation](#check-installation-1)
     - [Assumptions](#assumptions)
-      - [Step-1: Set up a virtualenv](#step-1-set-up-a-virtualenv)
+      - [Step-1: Set up a virtual environment](#step-1-set-up-a-virtual-environment)
       - [Step-2: Get the source code](#step-2-get-the-source-code)
-      - [Step-3: Activate Virtual env](#step-3-activate-virtual-env)
+      - [Step-3: Activate virtual environment](#step-3-activate-virtual-environment)
       - [Step-4: Install python packages](#step-4-install-python-packages)
   - [USAGE](#usage)
     - [Conditions](#conditions)
@@ -90,69 +92,72 @@ pip 20.0.2 from /usr/lib/python3/dist-packages/pip (python 3.8)
 ### Assumptions
 - you have python 3.x installed (current version python 3.9, we'll use 3.8.6 since not every packages is updated to 3.9)
 - you have pip installed, and know how to install packages with pip
-#### Step-1: Set up a virtualenv
-Run the following commands to set up a virtualenvironment:
+#### Step-1: Set up a virtual environment
+Run the following commands to set up a virtual environment:
 ```bash
 python3 -m pip install virtualenv
 python3 -m venv --system-site-packages qlabs-limitless-gaming
 ```
-you should now have a virtualenv and activated.
+you should now have a virtual environment.
 #### Step-2: Get the source code
+run the following command the pull the source code from GitHub
 `git clone https://github.com/Ilionx/qlabs-limitless-gaming.git`
 
-you can also clone via ssh or GitHub CLI, 
+you can also clone via SSH or GitHub CLI, 
 but if you've setup those you also know how to use them😉
-#### Step-3: Activate Virtual env
+
+#### Step-3: Activate virtual environment
 ```bash
-cd ./limitless-gaming
+cd ./qlabs-limitless-gaming
 # Linux
 source ./bin/activate
 # Windows
 ./scripts/activate.ps1
 ```
-> NOTE: This step needs to be repeated everytime you want to use this repo  
+> NOTE: This step needs to be repeated every time you want to use this repo  
 #### Step-4: Install python packages
 ```bash
 pip install wheel pylint autopep8 
 pip install -r requirements.txt
 ```
-this should install all the packages needed inside the virtualenv, the installation can take a while, depending on you internet speed. the total download size is about 500MB.
+this should install all the packages needed inside the virtual environment, the installation can take a while, depending on you internet speed. the total download size is about 500MB. 
 
 ## USAGE
 ### Conditions
 You'll need the following hardware to use the system as designed
-- a Jetson nano development kit
+- a Jetson Nano development kit
 - a Xbox one or a newer series
 - a Xbox adaptive controller
 There are workarounds to use the [Xbox adaptive controller on the playstation 4](https://www.youtube.com/watch?v=p3p1RTpW4SI), but these aren't tested.
 ### Why this hardware?
-We use a [Jetson nano development kit](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-nano/), as this [SBC](https://en.wikipedia.org/wiki/Single-board_computer) is strong enough to run realtime AI models.  
+We use a [Jetson nano development kit](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-nano/), as this [SBC](https://en.wikipedia.org/wiki/Single-board_computer) is strong enough to run Realtime AI models.  
 And it also has [GPIO](https://en.wikipedia.org/wiki/General-purpose_input/output) ports, which enables it to capture and send electrical signals.
 
-We use the xbox adaptive controller, because it enables us to mimic a press of a button. 
+We use the Xbox adaptive controller, because it enables us to mimic a press of a button. 
 ### Using the program
 Currently there is only one piece of code which could be classified as functional. this is working with the camera.
 To start this program use the following commands:
+
 ```bash
 python ./src/limitless-gaming.py
 ```
 
 ## DEVELOPMENT
-Current there are 2 main programs, one who uses a Camera feed and OpenCV to analyse the feed. this way we could use stickers to trigger an action, it may also be possible to link it to a Neural network, or anything else which could work.
+Current there are 2 main programs, one who uses a Camera feed and OpenCV to analyze the feed. this way we could use stickers to trigger an action, it may also be possible to link it to a Neural network, or anything else which could work.
 
 and a module using a microphone, this way we could use voice or sound recognition to detect triggers. the code present uses [MFCC](https://en.wikipedia.org/wiki/Mel-frequency_cepstrum) with [KNN](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) to classify sounds.
 for more info about how to help develop this project see [Contribute](#contribute)
 
 ## WIKI
-We believe in [clean code](https://www.freecodecamp.org/news/clean-coding-for-beginners/), so the code should be writen good enough to explain itself.
+We believe in [clean code](https://www.freecodecamp.org/news/clean-coding-for-beginners/), so the code should be written good enough to explain itself.
 This however is not always the case, it's not always easy to explain complex code, not matter the amount of comments you place next to it.
 
 ## CONTRIBUTE
-Your able to contribute by opening a new issue, or reacting to an excisting issue or opening a pull request agains the master branch, thisway the community can disscus the issue, or changes.
+Your able to contribute by opening a new issue, or reacting to an existing issue or opening a pull request against the master branch, this way the community can discus the issue, or changes.
 
 for a more detailed view on how to contribute to this project see [Contributing](CONTRUBITING.md)
 ### Code of Conduct
-We are in favour of a safe and fun development environment, that's why we have a [code of conduct](CODE_OF_CONDUCT.md).
+We are in favor of a safe and fun development environment, that's why we have a [code of conduct](CODE_OF_CONDUCT.md).
 this ensures that developers who love to develop can do so.
 
 # Many Thanks
