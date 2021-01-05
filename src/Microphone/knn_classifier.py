@@ -10,6 +10,54 @@ def predict(knc_model: KNC, mfcc_sample: list):
     """returns a prediction from the given model"""
     return knc_model.predict([mfcc_sample])[0]
 
+def load_all_training_data(training_data_folder_name: str):
+    """loads all data classified in with the name of the
+    folder as the class, and the files as the examples"""
+    os.chdir(training_data_folder_name)
+    training_data = []
+    folders = []
+    for file_or_folder in os.listdir():
+        if os.path.isdir(file_or_folder):
+            folders.append(file_or_folder)
+    for folder in folders:
+        loaded_data = load_training_data(folder)
+        training_data.append(loaded_data)
+    os.chdir("..")
+    return training_data
+def split_data(data_to_split):
+    """
+    Split training data into classes and data
+    Return
+    ---
+    classes, data
+    """
+    known_classes = []
+    data_from_classes = []
+    for i in data_to_split:
+        known_classes.append(i[0])
+        data_from_classes.append(i[1])
+    return known_classes, data_from_classes
+def reshape(mfcc, size: int):
+    """reshapes a mfcc to a given size"""
+    new_mfcc = []
+    current_size = len(mfcc[0])
+    factor = current_size // size
+    for counter, arr in enumerate(mfcc):
+        new_mfcc.append([])
+        new_mfcc[counter] = list(arr[::factor])
+        if size != len(new_mfcc[counter]):
+            diff = len(new_mfcc[counter]) - size
+            if diff % 2:
+                diff -= 1
+                diff = diff // 2
+                if diff:
+                    new_mfcc[counter] = new_mfcc[counter][diff:-(diff+1)]
+                else:
+                    new_mfcc[counter] = new_mfcc[counter][:-1]
+            else:
+                diff = diff // 2
+                new_mfcc[counter] = new_mfcc[counter][diff:-diff]
+    return new_mfcc
 def load_training_data(training_data_folder_name: str, ret_length=False):
     """loads training data from the given file name"""
     os.chdir(training_data_folder_name)
