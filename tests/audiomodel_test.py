@@ -34,6 +34,27 @@ class ModelTest(unittest.TestCase):
         if not os.path.exists(filename):
             self.fail("No file was found")
 
+    def test_save_and_load(self):
+        """Test the save and load methods from the KNC module"""
+        filename = 'tests/assets/test_save_and_load.knn-model'
+        test_model = KNeighborsClassifier(n_neighbors=5)
+        if not os.path.exists(filename):
+            KNC.save_model(test_model, filename)
+        else:
+            no_file = True
+            i = 1
+            while no_file:
+                if not os.path.exists(filename + str(i)):
+                    filename = filename + str(i)
+                    KNC.save_model(test_model, filename)
+                    no_file = False
+                else:
+                    i += 1
+        if not os.path.exists(filename):
+            self.fail("No file was found")
+        loaded_model = KNC.load_model(filename)
+        self.assertEqual(type(test_model), type(loaded_model))
+        self.assertEqual(test_model.__dict__, loaded_model.__dict__)
     def test_predict(self):
         """test the prdict function from the KNC functions"""
         model = KNC.load_model(
