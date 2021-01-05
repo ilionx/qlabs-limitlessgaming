@@ -1,3 +1,4 @@
+"""A simple testcase for the audio model classifier"""
 import os
 import unittest
 
