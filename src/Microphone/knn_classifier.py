@@ -46,6 +46,12 @@ def load_training_file(training_data_file_name: str, ret_length=False):
         return (training_data_file_name, mfcc), length
     else:
         return (training_data_file_name, mfcc)
+def transform_data(data_to_transform):
+    """Transforms data_to_transform from a 2d array to a 1d array"""
+    new_data = []
+    for row in data_to_transform:
+        new_data += list(row)
+    return new_data
 def train_model(knc_model: KNC, training_data: list, training_classes: list):
     """trains a given model with given data"""
     known_classes = []
