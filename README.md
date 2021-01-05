@@ -2,10 +2,10 @@
 [![Ilionx Logo](assets/ilionx-logo.svg)](https://www.ilionx.com)
 
 ## Intro
-This project started as my ([Philip Bollen](https://github.com/trik-flip)) internship assignment, but since it's not finished and more people could benefit from this project the idea was to publish it. but the project itself start way before this date.
-have a look at [the background](#background)
+The project started in 2019 in the Q-LABS, here employees, students and others come to work on innovative projects. this project started when Job came to us and Zuyd University to help him develop an application. Ever since our employees have been working on a solution for his problem. But ever since the pandemic there has been almost no progress. That's why, with help of an intern, we're open sourcing the project. this way we hope to contribute to society, help Job get a viable solution quicker, but also making it a more successful project. 
 
-<!-- BADGES -->
+By making this project open source we hope to reach more people, and more people to reach us.
+
 [![Contributor Covenant](https://img.shields.io/badge/Contributor_Covenant-v2.0_adopted-blue.svg)](CODE_OF_CONDUCT.md)
 [![GitHub License badge](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Build with Love](https://img.shields.io/badge/built_with-💖-f98888.svg)](CONTRIBUTERS.md)
@@ -35,11 +35,16 @@ have a look at [the background](#background)
   - [CONTRIBUTE](#contribute)
     - [Code of Conduct](#code-of-conduct)
 - [Many Thanks](#many-thanks)
-  
 ## Background
-The assignment started as developing a solution for a Boy called Job, he has ceberal paresis. 
-And he, like everybody else, wants to game every now and then. but with his CP he's not able to compete with other people.  
-With this project we try to help him, and possibly others. by using not only his hands and fingers as input via the controller, but by adding a camera and/ or microphone, we're able to create more triggers.
+Some time ago Job came to Ilionx and Zuyd University with the objective finding a solution for his problem. He, like many others, likes to game every now and then, but his ability to use a normal game controller is limited due to his cerebral paresis.
+
+This is where we (Ilionx) comes into play, as IT-company we've experience with developing new out-of-box solutions for abnormal problems. And with many young developers the spirit is fresh. That's why we adopted this to an Q-LABS project. This is our department where employees can think about and develop out-of-the-box solutions. 
+
+By participating in projects like this, employees get the change to stay a head with new technological developments, stimulate their creativity and gain new knowledge.
+
+The first idea for creating a solution was by using AI and pattern recognition, this way the computer could learn to trigger action when Job wanted to do this, but was unable to do so. 
+
+For more info about the project see [Gaming-with-CP](https://www.ilionx.com/blog/gamen-met-cerebrale-parese-dat-kan-gewoon-bij-q-labs/) and [Alumni-Zuyd](https://www.ilionx.com/wp-content/uploads/2020/01/AZM-ilionx.pdf), both articles are in Dutch.
 
 ## License
 We use the [MIT-License](LICENSE) for this project.
