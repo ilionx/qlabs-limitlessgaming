@@ -1,4 +1,4 @@
-# Limitless gaming
+# Q-LABS Limitless gaming
 [![Ilionx Logo](assets/ilionx-logo.svg)](https://www.ilionx.com)
 
 ## Intro
@@ -11,7 +11,7 @@ have a look at [the background](#background)
 [![Build with Love](https://img.shields.io/badge/built_with-💖-f98888.svg)](CONTRIBUTERS.md)
 
 ## Table Of Content
-- [Limitless gaming](#limitless-gaming)
+- [Q-LABS Limitless gaming](#q-labs-limitless-gaming)
   - [Intro](#intro)
   - [Table Of Content](#table-of-content)
   - [Background](#background)
@@ -67,12 +67,11 @@ pip 20.0.2 from /usr/lib/python3/dist-packages/pip (python 3.8)
 Run the following commands to set up a virtualenvironment:
 ```bash
 python3 -m pip install virtualenv
-python3 -m venv --system-site-packages limitless-gaming
+python3 -m venv --system-site-packages qlabs-limitless-gaming
 ```
 you should now have a virtualenv and activated.
 #### Step-2: Get the source code
-run the following command the pull the source code from github
-`git clone https://github.com/Ilionx/limitless-gaming.git`
+`git clone https://github.com/Ilionx/qlabs-limitless-gaming.git`
 
 you can also clone via ssh or GitHub CLI, 
 but if you've setup those you also know how to use them😉
