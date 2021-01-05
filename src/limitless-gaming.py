@@ -42,3 +42,5 @@ if __name__ == "__main__":
             if not led.on:
                 led.Light(not red, not yellow, not orange)
     elif SETTINGS["mic"]:
+        mic = Microphone()
+        mic.stream()
