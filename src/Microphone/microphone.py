@@ -123,6 +123,20 @@ class Microphone:
             real_x = real_x[:len(real_y)]
         return real_y, real_x
 
+    def callback_function(self, inputdata, _outdata, _frames, _time, status):
+        """This function will be called when the stream has received data"""
+        if status:
+            print(status)
+        new_l = []
+        for i in inputdata:
+            new_l.append(i[0])
+        if len(self.list) < 4000:
+            self.list += [0 for x in range(len(new_l))]
+        else:
+            self.list += new_l[::1]
+        if max(new_l) > self.threshold:
+            # TODO: if sound is above threshold -> analyse
+            pass
     def stream(self, callback_function=None):
         """This function will receive data from the audio device"""
         if callback_function is None:
