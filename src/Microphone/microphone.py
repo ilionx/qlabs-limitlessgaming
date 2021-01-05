@@ -20,3 +20,32 @@ class Microphone:
         self.running = True
         self.start = None
 
+    @staticmethod
+    def create_hann_window(size=50):
+        """
+        Create a Hann window of the given size
+
+        Parameters
+        ----------
+        size : int
+            specifies the size of the returned array
+
+        Returns
+        -------
+        arr : np.array[float]
+            object with floating point numbers ranging between 0 and 1, and a size of `size`
+
+        Example
+        -------
+        >>> create_Hann_window(size=3)
+        array([0., 1., 0.])
+        >>> create_Hann_window(size=5)
+        array([0., 0.5, 1., 0.5, 0.])
+        >>> create_Hann_window(size=10)
+        array([0., 0.11697778, 0.41317591, 0.75, 0.96984631, 0.96984631,
+            0.75, 0.41317591, 0.11697778, 0.])
+        """
+        arr = np.sin(np.linspace(-.5*np.pi, 1.5*np.pi, num=size))
+        arr += 1
+        arr /= 2
+        return arr
