@@ -49,3 +49,36 @@ class Microphone:
         arr += 1
         arr /= 2
         return arr
+
+    def sound_with_window(self, sound, window=None):
+        """
+        return the sound when it's transformed with a hann window
+        [Note: Performance]
+        To optimise the performance as much as possible,
+        it is recommended to always give window into the function.
+        this prevents calculating the window over and over.
+
+        Parameters
+        ----------
+        size : int
+            specifies the size of the returned array
+
+        Returns
+        -------
+        arr : np.array[float]
+            object with floating point numbers ranging between 0 and 1, and a size of `size`
+
+        Example
+        -------
+        >>> sound_with_window(size=3)
+        array([0., 1., 0.])
+        >>> sound_with_window(size=5)
+        array([0., 0.5, 1., 0.5, 0.])
+        >>> sound_with_window(size=10)
+        array([0., 0.11697778, 0.41317591, 0.75, 0.96984631,
+            0.96984631, 0.75, 0.41317591, 0.11697778, 0.])
+        """
+
+        if not window:
+            window = Microphone.create_hann_window(size=len(sound))
+        return sound * window
