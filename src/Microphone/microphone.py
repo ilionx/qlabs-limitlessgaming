@@ -122,3 +122,16 @@ class Microphone:
         else:
             real_x = real_x[:len(real_y)]
         return real_y, real_x
+
+    def stream(self, callback_function=None):
+        """This function will receive data from the audio device"""
+        if callback_function is None:
+            callback_function = self.callback_function
+        self.start = t.time()
+        stream = sd.Stream(samplerate=self.sample_rate, channels=1,
+                           callback=callback_function, blocksize=self.block_size)
+        with stream:
+            while self.running:
+                if t.time() - self.start > self.duration:
+                    self.running = False
+                pass
