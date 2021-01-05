@@ -82,3 +82,43 @@ class Microphone:
         if not window:
             window = Microphone.create_hann_window(size=len(sound))
         return sound * window
+
+    def audio_to_fft(self, sound_array, samplerate=None, duration=None):
+        """
+        This function converts the audio data to FFT format
+
+        Parameters
+        ----------
+        sound_array: array[float]
+            a array with the sound signal, in Amplitude over time
+
+        [OPTIONAL]
+        samplerate: int
+            a integer indicating the speed with which samples were taken
+
+        [OPTIONAL]
+        duration: int
+            a integer indicating the duration, in seconds, for howlong samples were taken.
+
+        Returns
+        -------
+        ret_arr : array[float]
+            a array with the MFCC output of the FFT input
+
+        Example
+        -------
+        >>> audio_to_fft(sound_array)
+        array([])
+        """
+        if samplerate is None:
+            samplerate = self.sample_rate
+        if duration is None:
+            duration = self.duration
+        real_y = np.abs(rfft(sound_array))
+        real_x = np.linspace(start=0, stop=samplerate//2,
+                             num=(samplerate*duration)//2)
+        if len(real_y) == max(len(real_x), len(real_y)):
+            real_y = real_y[:len(real_x)]
+        else:
+            real_x = real_x[:len(real_y)]
+        return real_y, real_x
