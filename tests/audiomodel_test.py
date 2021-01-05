@@ -1,4 +1,4 @@
-"""A simple to for the audio model classifier"""
+import os
 import unittest
 
 import src.Microphone.knn_classifier as KNC
@@ -17,7 +17,22 @@ class ModelTest(unittest.TestCase):
 
     def test_save(self):
         """Test the save function"""
-        self.fail("*** TODO: Create a test ***")
+        filename = "tests/assets/test_save.knn-model"
+        test_model = KNeighborsClassifier(n_neighbors=3)
+        if not os.path.exists(filename):
+            KNC.save_model(test_model, filename)
+        else:
+            no_file = True
+            i = 1
+            while no_file:
+                if not os.path.exists(filename + str(i)):
+                    filename = filename + str(i)
+                    KNC.save_model(test_model, filename)
+                    no_file = False
+                else:
+                    i += 1
+        if not os.path.exists(filename):
+            self.fail("No file was found")
 
     def test_predict(self):
         """test the prdict function from the KNC functions"""
