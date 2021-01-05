@@ -45,13 +45,40 @@ We use the [MIT-License](LICENSE) for this project.
 ## INSTALL
 We'll use [Python 3](https://www.python.org/downloads/release/python-386/)
 ### Preparation (Windows and MacOS)
+
 You can download python [here](https://www.python.org/downloads/)
-> NOTE: the installer will ask if you want to install pip, check this box  
+
+> NOTE: you'll have to check two box which by default aren't checked
+>
+> 1. `Add Python 3.x to PATH` or `Add Python to environment variables` 
+>
+> 2. `pip`
+>
+> in case they are already checked, you don't have to adjust anything
 
 follow the installation, once done check if python is installed correct, by searching for python and executing.
+
+#### Check installation
+
+you should open a terminal window [Windows key] + r, then type `cmd`.
+
+a black terminal should've popped-up 
+
+now type `python --version && pip --version`, if you see something that looks like  
+
+```bash 
+Python 3.8.5
+pip 20.2.3 from c:\python38\lib\site-packages\pip (python 3.9)
+```
+
+then everything is installed correctly.
+
 ### Preparation (Linux)
 most Linux user probably know how to install python, but for those who don't go to the terminal and type `sudo apt update && sudo apt install python3 python3-pip`  
 It will prompt for a password, gather for some more info and then will prompt again to start the download. enter `Y` and hit ENTER.
+
+#### Check installation
+
 once done, check if python and pip are installed correct  
 run `python3 --version && pip3 --version`  
 the result should look something like 
