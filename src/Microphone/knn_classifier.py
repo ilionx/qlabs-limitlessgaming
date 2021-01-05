@@ -124,3 +124,16 @@ def train_model(knc_model: KNC, training_data: list, training_classes: list):
             transformed_data = transform_data(training_data)
             new_data.append(transformed_data)
     knc_model.fit(new_data, known_classes)
+
+if __name__ == "__main__":
+    FILENAME = os.path.dirname(__file__)
+    os.chdir(FILENAME)
+    model = KNC(n_neighbors=1)
+    data = load_all_training_data("training sounds")
+    classes, data = split_data(data)
+    train_model(model, data, classes)
+
+    _, sound = load_training_file("training sounds/click.wav")
+    transformed_sound = transform_data(sound)
+    prediction = predict(model, transformed_sound)
+    print(f"This sound is a \"{prediction}\"")
