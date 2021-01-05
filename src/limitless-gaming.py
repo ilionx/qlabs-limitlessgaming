@@ -1,3 +1,4 @@
+"""The main file"""
 import sys
 from Camera.functions.open_face import *
 from Camera.functions.pi_cam import *
@@ -11,3 +12,5 @@ except ImportError as err:
     GPIO_enabled = False
 from Microphone.knn_classifier import *
 from Microphone.microphone import *
+
+if __name__ == "__main__":
