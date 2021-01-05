@@ -6,24 +6,32 @@ import soundfile as sf
 from librosa import feature
 from sklearn.neighbors import KNeighborsClassifier as KNC
 
+
 def predict(knc_model: KNC, mfcc_sample: list):
     """returns a prediction from the given model"""
     return knc_model.predict([mfcc_sample])[0]
+
 
 def save_model(model_to_save: KNC, filename: str):
     """Saves <model_to_save> to <filename> file for later reuse"""
     model_file = open(filename, "wb")
     pickle.dump(model_to_save, model_file)
     model_file.close()
+
+
 def load_model(filename: str) -> KNC:
     """load an KNC model from <filename>"""
     model_file = open(filename, "rb")
     loaded_model = pickle.load(model_file)
     model_file.close()
     return loaded_model
+
+
 def model_score(knc_model: KNC, mfcc_samples):
     """returns the accuracy of the given model"""
     return knc_model.score(mfcc_samples[0], mfcc_samples[1])
+
+
 def load_all_training_data(training_data_folder_name: str):
     """loads all data classified in with the name of the
     folder as the class, and the files as the examples"""
@@ -38,6 +46,7 @@ def load_all_training_data(training_data_folder_name: str):
         training_data.append(loaded_data)
     os.chdir("..")
     return training_data
+
 def split_data(data_to_split):
     """
     Split training data into classes and data
@@ -51,6 +60,8 @@ def split_data(data_to_split):
         known_classes.append(i[0])
         data_from_classes.append(i[1])
     return known_classes, data_from_classes
+
+
 def reshape(mfcc, size: int):
     """reshapes a mfcc to a given size"""
     new_mfcc = []
@@ -72,6 +83,8 @@ def reshape(mfcc, size: int):
                 diff = diff // 2
                 new_mfcc[counter] = new_mfcc[counter][diff:-diff]
     return new_mfcc
+
+
 def load_training_data(training_data_folder_name: str, ret_length=False):
     """loads training data from the given file name"""
     os.chdir(training_data_folder_name)
@@ -97,6 +110,8 @@ def load_training_data(training_data_folder_name: str, ret_length=False):
         return (training_data_folder_name, mfcc_data), length
     else:
         return (training_data_folder_name, mfcc_data)
+
+
 def load_training_file(training_data_file_name: str, ret_length=False):
     """loads training data from the given file name"""
     file_data, samplerate = sf.read(training_data_file_name)
@@ -108,12 +123,16 @@ def load_training_file(training_data_file_name: str, ret_length=False):
         return (training_data_file_name, mfcc), length
     else:
         return (training_data_file_name, mfcc)
+
+
 def transform_data(data_to_transform):
     """Transforms data_to_transform from a 2d array to a 1d array"""
     new_data = []
     for row in data_to_transform:
         new_data += list(row)
     return new_data
+
+
 def train_model(knc_model: KNC, training_data: list, training_classes: list):
     """trains a given model with given data"""
     known_classes = []
@@ -124,6 +143,7 @@ def train_model(knc_model: KNC, training_data: list, training_classes: list):
             transformed_data = transform_data(training_data)
             new_data.append(transformed_data)
     knc_model.fit(new_data, known_classes)
+
 
 if __name__ == "__main__":
     FILENAME = os.path.dirname(__file__)
@@ -137,3 +157,7 @@ if __name__ == "__main__":
     transformed_sound = transform_data(sound)
     prediction = predict(model, transformed_sound)
     print(f"This sound is a \"{prediction}\"")
+
+    # NOTE: Save the trained model to a file for easy reuse without training
+    # (this is for when a model uses more input data)
+    # save_model(model, "models/trained.knn-model")
