@@ -6,6 +6,9 @@ The project started in 2019 in the Q-LABS, here employees, students and others c
 
 By making this project open source we hope to reach more people, and more people to reach us.
 
+The past 4 months an Intern from Zuyd University has been working on the project, he has mainly been working on the OpenCV and KNN modules.
+Also the main choice of hardware and software are further selected by the intern.
+
 [![Contributor Covenant](https://img.shields.io/badge/Contributor_Covenant-v2.0_adopted-blue.svg)](CODE_OF_CONDUCT.md)
 [![GitHub License badge](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Build with Love](https://img.shields.io/badge/built_with-💖-f98888.svg)](CONTRIBUTERS.md)
@@ -79,7 +82,7 @@ now type `python --version && pip --version`, if you see something that looks li
 
 ```bash 
 Python 3.8.5
-pip 20.2.3 from c:\python38\lib\site-packages\pip (python 3.9)
+pip 20.2.3 from c:\python38\lib\site-packages\pip (python 3.8)
 ```
 
 then everything is installed correctly.
