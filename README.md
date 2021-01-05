@@ -105,7 +105,9 @@ pip 20.0.2 from /usr/lib/python3/dist-packages/pip (python 3.8)
 ### Assumptions
 
 - you have python 3.x installed (current version python 3.9, we'll use 3.8.6 since not every packages is updated to 3.9)
+  - if something went wrong while or after the installation, try it agian with this guide:[How to install Python 3 on Windows](https://realpython.com/installing-python/#how-to-install-python-on-windows)
 - you have pip installed, and know how to install packages with pip
+  - if you don't feel confident enough to use pip read this guide: [What is PIP](https://realpython.com/what-is-pip/)
 
 #### Step-1: Set up a virtual environment
 
