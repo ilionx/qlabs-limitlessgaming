@@ -21,6 +21,9 @@ def load_model(filename: str) -> KNC:
     loaded_model = pickle.load(model_file)
     model_file.close()
     return loaded_model
+def model_score(knc_model: KNC, mfcc_samples):
+    """returns the accuracy of the given model"""
+    return knc_model.score(mfcc_samples[0], mfcc_samples[1])
 def load_all_training_data(training_data_folder_name: str):
     """loads all data classified in with the name of the
     folder as the class, and the files as the examples"""
