@@ -5,6 +5,7 @@ import numpy as np
 import sounddevice as sd
 from scipy.fft import rfft
 
+
 class Microphone:
     """this class provides a simple interface to the Microphone"""
 
@@ -137,6 +138,7 @@ class Microphone:
         if max(new_l) > self.threshold:
             # TODO: if sound is above threshold -> analyse
             pass
+
     def stream(self, callback_function=None):
         """This function will receive data from the audio device"""
         if callback_function is None:
@@ -149,6 +151,7 @@ class Microphone:
                 if t.time() - self.start > self.duration:
                     self.running = False
                 pass
+
 
 # Main
 if __name__ == "__main__":
