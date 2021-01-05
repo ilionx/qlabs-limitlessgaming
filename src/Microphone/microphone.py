@@ -149,3 +149,10 @@ class Microphone:
                 if t.time() - self.start > self.duration:
                     self.running = False
                 pass
+
+# Main
+if __name__ == "__main__":
+    mic = Microphone()
+    print("Starting Stream")
+    mic.stream()
+    print("Stop Stream")
