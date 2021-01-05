@@ -10,6 +10,17 @@ def predict(knc_model: KNC, mfcc_sample: list):
     """returns a prediction from the given model"""
     return knc_model.predict([mfcc_sample])[0]
 
+def save_model(model_to_save: KNC, filename: str):
+    """Saves <model_to_save> to <filename> file for later reuse"""
+    model_file = open(filename, "wb")
+    pickle.dump(model_to_save, model_file)
+    model_file.close()
+def load_model(filename: str) -> KNC:
+    """load an KNC model from <filename>"""
+    model_file = open(filename, "rb")
+    loaded_model = pickle.load(model_file)
+    model_file.close()
+    return loaded_model
 def load_all_training_data(training_data_folder_name: str):
     """loads all data classified in with the name of the
     folder as the class, and the files as the examples"""
