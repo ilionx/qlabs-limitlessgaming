@@ -22,7 +22,8 @@ def filter_contour(contour_list, size=20):
             cnt_area = False
     return filtered_contour_list
 
-def find_contour(frame, display_width, settings=SETTINGS, convert=True,
+
+def find_contour(frame, display_width, settings=(41, 84, 40, 255, 79, 255), convert=True,
                  show=False, draw=False, figure="rec", color=(255, 255, 0),
                  pos=False, return_all_contours=False):
     """returns all contours found in a image"""
