@@ -46,10 +46,7 @@ def find_contour(frame, display_width, settings=SETTINGS, convert=True,
     contours = sorted(contours, key=lambda x_coordinate: cv2.contourArea(
         x_coordinate), reverse=True)
     trigger = False
-    return_x, return_y, _, _ = 0, 0, 0, 0
-    # object_pos = (0, 0)
-    for cnt in contours:
-        area = cv2.contourArea(cnt)
+    return_x, return_y = 0, 0
         (x_coordinate, y_cordinate, width, heigth) = cv2.boundingRect(cnt)
         # big contour area's are seen as objects, others are left out
         # NOTE: maybe more efficient in a while loop
