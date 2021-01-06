@@ -2,9 +2,8 @@
 import cv2
 import numpy as np
 
-from Camera.functions.pi_cam import cam_setup
+from src.Camera.functions.pi_cam import cam_setup
 
-SETTINGS = (41, 84, 40, 255, 79, 255)
 
 
 def find_contour(frame, display_width, settings=SETTINGS, convert=True,
