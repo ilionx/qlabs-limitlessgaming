@@ -5,6 +5,22 @@ import numpy as np
 from src.Camera.functions.pi_cam import cam_setup
 
 
+def filter_contour(contour_list, size=20):
+    """Filter a array of contours based on there area"""
+    contour_list = sorted(contour_list, key=lambda x_coordinate: cv2.contourArea(
+        x_coordinate), reverse=True)
+    filtered_contour_list = []
+    cnt_area = True
+    i = 0
+    while (cnt_area) and (i < len(contour_list)):
+        cnt = contour_list[i]
+        area = cv2.contourArea(cnt)
+        if area >= size:
+            filtered_contour_list.append(cnt)
+            i += 1
+        else:
+            cnt_area = False
+    return filtered_contour_list
 
 def find_contour(frame, display_width, settings=SETTINGS, convert=True,
                  show=False, draw=False, figure="rec", color=(255, 255, 0),
