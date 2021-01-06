@@ -27,6 +27,20 @@ class ComputerVisionTest(unittest.TestCase):
             faces.append(i)
         self.assertGreaterEqual(
             len(faces), 1, "ERROR(test_detect_face_on_picture): No faces found")
+
+    def test_detect_face_on_picture_false_postives(self):
+        "Test the detection of a face on a static picture on false postives"
+        image = cv2.imread(ASSETS_FOLDER + self.TRUMP_PHOTO, 0)
+        cascade_object = cv2.CascadeClassifier(
+            self.CASCADE_FOLDER + self.FACE_CASCADE_MODEL)
+        faces = []
+        for i in face_recognition.find_cascade(cascade_object, image, draw=True, draw_frame=image):
+            faces.append(i)
+        self.assertGreaterEqual(
+            len(faces), 1, "ERROR(test_detect_face_on_picture_false_postives): No faces found")
+        self.assertEqual(len(
+            faces), 1, "ERROR(test_detect_face_on_picture_false_postives): To many faces detected")
+
     def test_detect_smile_on_picture(self):
         "Test the detection of a smile on a static picture"
         image = cv2.imread(ASSETS_FOLDER + self.TRUMP_PHOTO_SMILE, 0)
@@ -37,6 +51,20 @@ class ComputerVisionTest(unittest.TestCase):
             smiles.append(i)
         self.assertGreaterEqual(
             len(smiles), 1, "ERROR(test_detect_smile_on_picture): No Smiles found")
+
+    def test_detect_smile_on_picture_false_postives(self):
+        "Test the detection of a smile on a static picture on false postives"
+        image = cv2.imread(ASSETS_FOLDER + self.TRUMP_PHOTO_SMILE, 0)
+        cascade_object = cv2.CascadeClassifier(
+            self.CASCADE_FOLDER + self.SMILE_CASCADE_MODEL)
+        smiles = []
+        for i in face_recognition.find_cascade(cascade_object, image, draw=True, draw_frame=image):
+            smiles.append(i)
+        self.assertGreaterEqual(
+            len(smiles), 1, "ERROR(test_detect_smile_on_picture_false_postives): No Smiles found")
+        self.assertEqual(
+            len(smiles), 1, "ERROR(test_detect_smile_on_picture_false_postives): To many smiles detected")
+
     def test_detect_face_and_smile_on_picture(self):
         "Test the detection of a smile in a face on a static picture"
         image = cv2.imread(ASSETS_FOLDER + self.TRUMP_PHOTO_SMILE, 0)
