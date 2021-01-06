@@ -47,27 +47,24 @@ def find_contour(frame, display_width, settings=SETTINGS, convert=True,
         x_coordinate), reverse=True)
     trigger = False
     return_x, return_y = 0, 0
+    filtered_contour_list = filter_contour(contours)
+    for cnt in filtered_contour_list:
         (x_coordinate, y_cordinate, width, heigth) = cv2.boundingRect(cnt)
-        # big contour area's are seen as objects, others are left out
-        # NOTE: maybe more efficient in a while loop
-        if area >= 20:
-            # something went wrong, so the y_cordinate ax_coordinatele is only as long as
-            # (display_width // factor) while, the x_coordinate ax_coordinatele as long as
-            # the (display_height // factor)
-            if y_cordinate < display_width // 2:
-                trigger = True
-            if draw:
-                if figure == "rec":
-                    cv2.rectangle(frame, (x_coordinate, y_cordinate),
-                                  (x_coordinate+width, y_cordinate+heigth), color, 3)
-                elif figure == "dot":
-                    cv2.circle(
-                        frame, (x_coordinate, y_cordinate), 2, color, -1)
-            if pos and return_x == 0 and return_y == 0:
-                return_x, return_y = x_coordinate + \
-                    (width//2), y_cordinate + (heigth//2)
-            if draw_middel:
-                pass
+        # something went wrong, so the y-axle is only as long as
+        # (display_width // factor) while, the x-axle as long as
+        # the (display_height // factor)
+        if y_cordinate < display_width // 2:
+            trigger = True
+        if draw:
+            if figure == "rec":
+                cv2.rectangle(frame, (x_coordinate, y_cordinate),
+                              (x_coordinate+width, y_cordinate+heigth), color, 3)
+            elif figure == "dot":
+                cv2.circle(
+                    frame, (x_coordinate, y_cordinate), 2, color, -1)
+        if pos and return_x == 0 and return_y == 0:
+            return_x, return_y = x_coordinate + \
+                (width//2), y_cordinate + (heigth//2)
     if pos:
         return return_x, return_y
     else:
