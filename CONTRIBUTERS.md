@@ -1,6 +1,6 @@
 <!-- 
 Idea is from: https://github.com/sButtons/sbuttons/blob/master/CONTRIBUTORS.md
-repo link: https://github.com/Ilionx/Limitless-gaming/
+repo link: https://github.com/Ilionx/qlabs-Limitlessgaming/
 
 💻: contribute code 
     -> commits?author=<username>
@@ -22,4 +22,4 @@ With many thanks to:
 <a href="https://www.ilionx.com"><img src="https://www.ilionx.com/wp-content/themes/rocket-ship/dist/images/ilionx-logo.svg" width="100px"></a>
 
 And thanks to all of the Contributers:
-<table width="100%"><tr><th colspan="7" style="text-align: center;">Contributers</th></tr><tr><td align="center"><a href="https://github.com/trik-flip"><img src="https://github.com/trik-flip.png" width="100px"><p>Philip Bollen</p></a><a href="https://github.com/Ilionx/Limitless-gaming/commits?author=trik-flip" title="Code">💻</a></td></tr></table>
+<table width="100%"><tr><th colspan="7" style="text-align: center;">Contributers</th></tr><tr><td align="center"><a href="https://github.com/trik-flip"><img src="https://github.com/trik-flip.png" width="100px"><p>Philip Bollen</p></a><a href="https://github.com/Ilionx/qlabs-Limitlessgaming/commits?author=trik-flip" title="Code">💻</a></td></tr></table>

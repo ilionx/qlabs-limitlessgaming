@@ -114,14 +114,14 @@ pip 20.0.2 from /usr/lib/python3/dist-packages/pip (python 3.8)
 Run the following commands to set up a virtual environment:
 ```bash
 python3 -m pip install virtualenv
-python3 -m venv --system-site-packages qlabs-limitless-gaming
+python3 -m venv --system-site-packages qlabs-limitlessgaming
 ```
 you should now have a virtual environment.
 
 #### Step-2: Get the source code
 
 run the following command the pull the source code from GitHub
-`git clone https://github.com/Ilionx/qlabs-limitless-gaming.git`
+`git clone https://github.com/Ilionx/qlabs-limitlessgaming.git`
 
 you can also clone via SSH or GitHub CLI, 
 but if you've setup those you also know how to use them😉
@@ -129,7 +129,7 @@ but if you've setup those you also know how to use them😉
 #### Step-3: Activate virtual environment
 
 ```bash
-cd ./qlabs-limitless-gaming
+cd ./qlabs-limitlessgaming
 # Linux
 source ./bin/activate
 # Windows
