@@ -1,7 +1,6 @@
 """Simple wrapper for using open-cv"""
 import cv2
 import numpy as np
-
 from src.Camera.functions.pi_cam import cam_setup
 
 
@@ -86,12 +85,12 @@ def find_cascade(cascade_object, frame, scale_factor=2.5, min_neighbors=5,
         yield (x_coordinate, y_coordinate, width, heigth)
 
 
-def stream(factor=2, display=[1280,960],
+def stream(factor=2, display=[1280, 960],
            cascade_folder="./cascades/", cam=2, framerate=21,
            pos=False, detect=2):
     """opens and yields a camera stream"""
     display_height = display[0]//factor
-    display_width = display=1//factor
+    display_width = display = 1//factor
     face_cascade = cv2.CascadeClassifier(
         cascade_folder+'haarcascade_frontalface_default.xml')
     smile_cascade = cv2.CascadeClassifier(
