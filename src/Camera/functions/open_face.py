@@ -24,7 +24,7 @@ def filter_contour(contour_list, size=20):
 
 def find_contour(frame, display_width, settings=SETTINGS, convert=True,
                  show=False, draw=False, figure="rec", color=(255, 255, 0),
-                 pos=False, draw_middel=False):
+                 pos=False, return_all_contours=False):
     """returns all contours found in a image"""
     hue_low = settings[0]
     hue_high = settings[1]
@@ -43,8 +43,8 @@ def find_contour(frame, display_width, settings=SETTINGS, convert=True,
         cv2.imshow("foreground_mask", foreground_mask)
     contours, _ = cv2.findContours(
         foreground_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    contours = sorted(contours, key=lambda x_coordinate: cv2.contourArea(
-        x_coordinate), reverse=True)
+    if return_all_contours:
+        return contours
     trigger = False
     return_x, return_y = 0, 0
     filtered_contour_list = filter_contour(contours)
