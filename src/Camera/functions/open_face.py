@@ -68,8 +68,7 @@ def find_contour(frame, display_width, settings=(41, 84, 40, 255, 79, 255), conv
                 (width//2), y_cordinate + (heigth//2)
     if pos:
         return return_x, return_y
-    else:
-        return trigger
+    return trigger
 
 
 def find_cascade(cascade_object, frame, scale_factor=2.5, min_neighbors=5,
