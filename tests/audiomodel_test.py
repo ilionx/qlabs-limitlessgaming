@@ -33,7 +33,7 @@ class ModelTest(unittest.TestCase):
                 else:
                     i += 1
         if not os.path.exists(filename):
-            self.fail("No file was found")
+            self.fail("Model was not saved to a file")
 
     def test_save_and_load(self):
         """Test the save and load methods from the KNC module"""
@@ -56,6 +56,7 @@ class ModelTest(unittest.TestCase):
         loaded_model = KNC.load_model(filename)
         self.assertEqual(type(test_model), type(loaded_model))
         self.assertEqual(test_model.__dict__, loaded_model.__dict__)
+
     def test_predict(self):
         """test the prdict function from the KNC functions"""
         model = KNC.load_model(
