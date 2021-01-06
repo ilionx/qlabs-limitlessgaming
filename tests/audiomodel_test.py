@@ -8,7 +8,7 @@ from sklearn.neighbors import KNeighborsClassifier
 
 class ModelTest(unittest.TestCase):
     """Test the data/models save and load functions"""
-
+    MODEL_EXTENTION = ".knn-model"
     def test_load(self):
         """test the load function from KNC"""
         model = KNC.load_model(
@@ -18,42 +18,42 @@ class ModelTest(unittest.TestCase):
 
     def test_save(self):
         """Test the save function"""
-        filename = "tests/assets/test_save.knn-model"
+        filename = "tests/assets/test_save"
         test_model = KNeighborsClassifier(n_neighbors=3)
-        if not os.path.exists(filename):
-            KNC.save_model(test_model, filename)
+        if not os.path.exists(filename+self.MODEL_EXTENTION):
+            KNC.save_model(test_model, filename+self.MODEL_EXTENTION)
         else:
             no_file = True
             i = 1
             while no_file:
-                if not os.path.exists(filename + str(i)):
+                if not os.path.exists(filename + str(i)+self.MODEL_EXTENTION):
                     filename = filename + str(i)
-                    KNC.save_model(test_model, filename)
+                    KNC.save_model(test_model, filename+self.MODEL_EXTENTION)
                     no_file = False
                 else:
                     i += 1
-        if not os.path.exists(filename):
+        if not os.path.exists(filename+self.MODEL_EXTENTION):
             self.fail("Model was not saved to a file")
 
     def test_save_and_load(self):
         """Test the save and load methods from the KNC module"""
-        filename = 'tests/assets/test_save_and_load.knn-model'
+        filename = 'tests/assets/test_save_and_load'
         test_model = KNeighborsClassifier(n_neighbors=5)
-        if not os.path.exists(filename):
-            KNC.save_model(test_model, filename)
+        if not os.path.exists(filename+self.MODEL_EXTENTION):
+            KNC.save_model(test_model, filename+self.MODEL_EXTENTION)
         else:
             no_file = True
             i = 1
             while no_file:
-                if not os.path.exists(filename + str(i)):
+                if not os.path.exists(filename + str(i)+self.MODEL_EXTENTION):
                     filename = filename + str(i)
-                    KNC.save_model(test_model, filename)
+                    KNC.save_model(test_model, filename+self.MODEL_EXTENTION)
                     no_file = False
                 else:
                     i += 1
-        if not os.path.exists(filename):
+        if not os.path.exists(filename+self.MODEL_EXTENTION):
             self.fail("No file was found")
-        loaded_model = KNC.load_model(filename)
+        loaded_model = KNC.load_model(filename+self.MODEL_EXTENTION)
         self.assertEqual(type(test_model), type(loaded_model))
         self.assertEqual(test_model.__dict__, loaded_model.__dict__)
 
