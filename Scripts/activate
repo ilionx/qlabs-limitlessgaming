@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\PBollen\project\limitless-gaming"
+VIRTUAL_ENV="~\project\qlabs-limitlessgaming"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
@@ -54,8 +54,8 @@ fi
 
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1:-}"
-    if [ "x(limitless-gaming) " != x ] ; then
-	PS1="(limitless-gaming) ${PS1:-}"
+    if [ "x(qlabs-limitlessgaming) " != x ] ; then
+	PS1="(qlabs-limitlessgaming) ${PS1:-}"
     else
     if [ "`basename \"$VIRTUAL_ENV\"`" = "__" ] ; then
         # special case for Aspen magic directories
