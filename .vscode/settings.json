@@ -12,6 +12,7 @@
     "python.testing.unittestEnabled": true,
     "cSpell.words": [
         "GPIO",
+        "Ilionx",
         "numpy"
     ]
 }
