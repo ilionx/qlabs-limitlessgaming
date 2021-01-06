@@ -90,5 +90,29 @@ class ComputerVisionTest(unittest.TestCase):
 class ContourTest(unittest.TestCase):
     """Test the Contour functions"""
 
+    def test_find_contour(self):
+        """Detect a yellow flower on a picture"""
+        SETTINGS = (19, 35, 225, 255, 82, 255)
+        IMAGE = "flower_contour.jpg"
+        image = cv2.imread(ASSETS_FOLDER + IMAGE)
+        contours = face_recognition.find_contour(
+            image, 2, pos=True, settings=SETTINGS, return_all_contours=True)
+        filtered_contour_list = face_recognition.filter_contour(contours)
+        self.assertEqual(len(filtered_contour_list), 1,
+                         "ERROR(test_find_contour): Found more then 1 object")
+
+    def test_find_multiple_contours(self):
+        """Detect multiple smarties in a picture"""
+        SETTINGS = (0, 179, 43, 255, 0, 255)
+        IMAGE = "smarties.jpg"
+        image = cv2.imread(ASSETS_FOLDER + IMAGE)
+        contours = face_recognition.find_contour(
+            image, 2, pos=True, settings=SETTINGS, return_all_contours=True)
+        filtered_contour_list = face_recognition.filter_contour(
+            contours, size=30)
+        self.assertEqual(len(filtered_contour_list), 15,
+                         "ERROR(test_find_contour): The wrong amount of smarties are detected")
+
+
 if __name__ == "__main__":
     unittest.main()
