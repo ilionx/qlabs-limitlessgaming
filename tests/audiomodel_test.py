@@ -9,12 +9,13 @@ from sklearn.neighbors import KNeighborsClassifier
 class ModelTest(unittest.TestCase):
     """Test the data/models save and load functions"""
     MODEL_EXTENTION = ".knn-model"
+
     def test_load(self):
         """test the load function from KNC"""
         model = KNC.load_model(
             "./data/models/K-nearest neighbors/untrained.knn-model")
         self.assertEqual(type(model), type(
-            KNeighborsClassifier(n_neighbors=1)))
+            KNeighborsClassifier(n_neighbors=1)), "ERROR(test_load): Wrong model loaded")
 
     def test_save(self):
         """Test the save function"""
@@ -54,8 +55,10 @@ class ModelTest(unittest.TestCase):
         if not os.path.exists(filename+self.MODEL_EXTENTION):
             self.fail("No file was found")
         loaded_model = KNC.load_model(filename+self.MODEL_EXTENTION)
-        self.assertEqual(type(test_model), type(loaded_model))
-        self.assertEqual(test_model.__dict__, loaded_model.__dict__)
+        self.assertEqual(type(test_model), type(loaded_model),
+                         "ERROR(test_save_and_load): Wrong model loaded")
+        self.assertEqual(test_model.__dict__, loaded_model.__dict__,
+                         "ERROR(test_save_and_load): Models are not the same")
 
     def test_predict(self):
         """test the prdict function from the KNC functions"""
@@ -64,7 +67,8 @@ class ModelTest(unittest.TestCase):
         _, sound = KNC.load_training_file("./data/sounds/click.wav")
         transformed_sound = KNC.transform_data(sound)
         prediction = KNC.predict(model, transformed_sound)
-        self.assertEqual(prediction, "clap")
+        self.assertEqual(prediction, "clap",
+                         "ERROR(test_predict): Wrong prediction")
 
 
 if __name__ == "__main__":
