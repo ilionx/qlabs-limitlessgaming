@@ -85,5 +85,10 @@ class ComputerVisionTest(unittest.TestCase):
             len(faces), 1, "ERROR(test_detect_face_and_smile_on_picture): No faces found")
         self.assertGreaterEqual(
             len(smiles), 1, "ERROR(test_detect_face_and_smile_on_picture): No smiles found")
+
+
+class ContourTest(unittest.TestCase):
+    """Test the Contour functions"""
+
 if __name__ == "__main__":
     unittest.main()
