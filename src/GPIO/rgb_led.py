@@ -5,7 +5,7 @@ import Jetson.GPIO as GPIO # type: ignore
 class RGBled:
     """this class can manage 1 RGB led"""
 
-    def __init__(self, red: int, green: int, blue: int):
+    def __init__(self, red=7, green=12, blue=15):
         print(f"using led:{red},{green},{blue}")
         self.red = red
         self.green = green
