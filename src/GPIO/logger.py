@@ -8,6 +8,14 @@ class Logger:
 
     Logger
     ===
+    By default the log files name is `log.txt`
+
+    another file can be used, it's plain text format  
+
+
+    By default the time format is the unix method, the amount of seconds since the epoch  
+
+    for another format the python datetime format is used instead.  
     """
 
     def __init__(self, filename=None, time_format=None):
@@ -24,3 +32,11 @@ class Logger:
         with open(self.filename, 'a') as log_file:
             log_file.write(time())
             log_file.write(message)
+
+    def log(self, message):
+        if self.time_format == "unix":
+            self._log_raw(message)
+        else:
+            with open(self.filename, "a") as log_file:
+                log_file.write(datetime.now().strftime())
+                log_file.write(message)
