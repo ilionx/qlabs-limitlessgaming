@@ -70,10 +70,13 @@ class Logger:
             log_file.write(time())
             log_file.write(message)
 
+    def _log_format(self, message):
+        with open(self.filename, 'a') as log_file:
+            log_file.write(datetime.now().strftime(self.time_format))
+            log_file.write(message)
+
     def log(self, message):
         if self.time_format == "unix":
             self._log_raw(message)
         else:
-            with open(self.filename, "a") as log_file:
-                log_file.write(datetime.now().strftime())
-                log_file.write(message)
+            self._log_format(message)
