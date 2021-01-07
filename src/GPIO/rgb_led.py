@@ -15,6 +15,9 @@ class RGBled:
         GPIO.setup(green, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(blue, GPIO.OUT, initial=GPIO.LOW)
 
+    def cleanup(self):
+        GPIO.cleanup((self.red, self.green, self.blue))
+
     def light(self, red: int, green: int, blue: int):
         """sets the light of the color to the value"""
         self.is_on = (red or green or blue)
@@ -30,7 +33,6 @@ class RGBled:
             GPIO.output(self.blue, GPIO.HIGH)
         else:
             GPIO.output(self.blue, GPIO.LOW)
-
     def on(self):
         """sets all the light on"""
         self.light(1, 1, 1)
@@ -38,7 +40,8 @@ class RGBled:
     def off(self):
         """turns all the lights off"""
         self.light(0, 0, 0)
-
+    def __del__(self):
+        self.cleanup()
 
 if __name__ == "__main__":
     import time
