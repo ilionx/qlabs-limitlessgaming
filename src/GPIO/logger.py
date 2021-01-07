@@ -66,16 +66,19 @@ class Logger:
             self.time_format = time_format
 
     def _log_raw(self, message):
+        """Log a message with the Unix timestamp"""
         with open(self.filename, 'a') as log_file:
             log_file.write(time())
             log_file.write(message)
 
     def _log_format(self, message):
+        """Log a message with a custom datetime format"""
         with open(self.filename, 'a') as log_file:
             log_file.write(datetime.now().strftime(self.time_format))
             log_file.write(message)
 
     def log(self, message):
+        """Public log method, this method determines if the time format is set"""
         if self.time_format == "unix":
             self._log_raw(message)
         else:
