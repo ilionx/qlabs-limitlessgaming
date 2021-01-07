@@ -22,7 +22,8 @@ image = cv2.imread("tests/assets/smarties.bmp")
 # image = cv2.imread("tests/assets/flower_contour.jpg")
 
 hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-while True:
+running = True
+while running:
     cv2.imshow("smarties", image)
 
     hLow = cv2.getTrackbarPos("hueLow", "trackbars")
@@ -39,5 +40,5 @@ while True:
     cv2.imshow("mask", FGmask)
 
     if cv2.waitKey(1) == ord('q'):
-        break
+        running = False
 cv2.destroyAllWindows()
