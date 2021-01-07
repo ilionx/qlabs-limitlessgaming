@@ -18,3 +18,6 @@ class Status:
 
     def get_status(self):
         return self.status
+
+    def show(self):
+        self.lights.light(self.status_codes[self.status])
