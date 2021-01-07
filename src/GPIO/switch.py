@@ -14,6 +14,9 @@ class MultiSwitchIn:
         GPIO.setup(blue, GPIO.IN)
 
     def __del__(self):
+        self.cleanup()
+
+    def cleanup(self):
         GPIO.cleanup((self.red, self.green, self.blue))
 
     def check(self):
