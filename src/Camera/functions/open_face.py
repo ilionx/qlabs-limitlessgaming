@@ -41,8 +41,8 @@ def find_contour(frame, display_width, settings=(41, 84, 40, 255, 79, 255), conv
     foreground_mask = cv2.inRange(hsv, lower_bound, upper_bound)
     if show:
         cv2.imshow("foreground_mask", foreground_mask)
-    contours, _ = cv2.findContours(
-        foreground_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours: list = cv2.findContours(
+        foreground_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]
     if return_all_contours:
         return contours
     trigger = False
