@@ -101,6 +101,8 @@ def stream(factor=2, display=[1280, 960],
     while filming:
         _, org_frame = cam.read()
         frame = org_frame
+        if not frame:
+            raise Exception(
                 "Frame not found: frame is %s and expected not None" % frame)
         passen = False
         if detect in (1, 2):
