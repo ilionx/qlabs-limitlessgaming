@@ -24,23 +24,25 @@ if __name__ == "__main__":
                     SETTINGS[s] = True
     if SETTINGS["cam"]:
         input_stream = stream(detect=2, framerate=5)
-        switchs = MultiSwitchIn(19, 21, 23)
+        if GPIO_enabled:
+            switches = MultiSwitchIn(19, 21, 23)
         FILMING = True
         while FILMING:
-            FILMING, shoot, passen = next(stream)
-            if shoot:
-                now = time.time()
-                led.On()
-            elif passen:
-                led.Light(1, 0, 1)
-            else:
-                led.Off()
-            red, yellow, orange = switchs.Check()
+            FILMING, shoot, passen = next(input_stream)
+            if GPIO_enabled:
+                if shoot:
+                    now = time.time()
+                    led.On()
+                elif passen:
+                    led.Light(1, 0, 1)
+                else:
+                    led.Off()
+                red, yellow, orange = switches.Check()
 
-            print_on_current_line(
-                f"Red:{not red}, Yellow:{not yellow}, Orange:{not orange} time:{t()}")
-            if not led.on:
-                led.Light(not red, not yellow, not orange)
+                print_on_current_line(
+                    f"Red:{not red}, Yellow:{not yellow}, Orange:{not orange} time:{t()}")
+                if not led.on:
+                    led.Light(not red, not yellow, not orange)
     elif SETTINGS["mic"]:
         mic = Microphone()
         mic.stream()
