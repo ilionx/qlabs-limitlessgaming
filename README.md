@@ -11,7 +11,7 @@ Also the main choice of hardware and software are further selected by the intern
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor_Covenant-v2.0_adopted-blue.svg)](CODE_OF_CONDUCT.md)
 [![GitHub License badge](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Build with Love](https://img.shields.io/badge/built_with-💖-f98888.svg)](CONTRIBUTERS.md)
+[![Build with Love](https://img.shields.io/badge/built_with-💖-f98888.svg)](CONTRIBUTORS.md)
 
 ## Table Of Content
 - [Q-LABS Limitless gaming](#q-labs-limitless-gaming)
@@ -196,4 +196,4 @@ this ensures that developers who love to develop can do so.
 
 # Many Thanks
 
-We'd like to thank all of the [contributers](CONTRIBUTERS.md)
+We'd like to thank all of the [contributors](CONTRIBUTORS.md)
