@@ -49,22 +49,22 @@ def find_contour(frame, display_width, settings=(41, 84, 40, 255, 79, 255), conv
     return_x, return_y = 0, 0
     filtered_contour_list = filter_contour(contours)
     for cnt in filtered_contour_list:
-        (x_coordinate, y_cordinate, width, heigth) = cv2.boundingRect(cnt)
+        (x_coordinate, y_coordinate, width, height) = cv2.boundingRect(cnt)
         # something went wrong, so the y-axle is only as long as
         # (display_width // factor) while, the x-axle as long as
         # the (display_height // factor)
-        if y_cordinate < display_width // 2:
+        if y_coordinate < display_width // 2:
             trigger = True
         if draw:
             if figure == "rec":
-                cv2.rectangle(frame, (x_coordinate, y_cordinate),
-                              (x_coordinate+width, y_cordinate+heigth), color, 3)
+                cv2.rectangle(frame, (x_coordinate, y_coordinate),
+                              (x_coordinate+width, y_coordinate+height), color, 3)
             elif figure == "dot":
                 cv2.circle(
-                    frame, (x_coordinate, y_cordinate), 2, color, -1)
+                    frame, (x_coordinate, y_coordinate), 2, color, -1)
         if pos and return_x == 0 and return_y == 0:
             return_x, return_y = x_coordinate + \
-                (width//2), y_cordinate + (heigth//2)
+                (width//2), y_coordinate + (height//2)
     if pos:
         return return_x, return_y
     return trigger
@@ -78,11 +78,11 @@ def find_cascade(cascade_object, frame, scale_factor=2.5, min_neighbors=5,
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     objects = cascade_object.detectMultiScale(
         frame, scale_factor, min_neighbors)
-    for (x_coordinate, y_coordinate, width, heigth) in objects:
+    for (x_coordinate, y_coordinate, width, height) in objects:
         if (draw and draw_frame.any()):
             cv2.rectangle(draw_frame, (start_x+x_coordinate, start_y+y_coordinate),
-                          (start_x+x_coordinate+width, start_y+y_coordinate+heigth), color, 3)
-        yield (x_coordinate, y_coordinate, width, heigth)
+                          (start_x+x_coordinate+width, start_y+y_coordinate+height), color, 3)
+        yield (x_coordinate, y_coordinate, width, height)
 
 
 def stream(factor=2, display=[1280, 960],
