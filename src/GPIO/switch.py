@@ -3,7 +3,7 @@ import Jetson.GPIO as GPIO # type: ignore
 
 
 class MultiSwitchIn:
-    """This class is used to read multple switches as input"""
+    """This class is used to read multiple switches as input"""
 
     def __init__(self, red: int, green: int, blue: int):
         self.red = red
@@ -28,7 +28,7 @@ class MultiSwitchIn:
 
 
 class MultiSwitchOut:
-    """This class is used to write multple switches as output"""
+    """This class is used to write multiple switches as output"""
 
     def __init__(self, pins, invert=False, start=0):
         self.pin1 = pins[0]
@@ -47,7 +47,7 @@ class MultiSwitchOut:
         GPIO.cleanup((self.pin1, self.pin2, self.pin3))
 
     def send(self, pin1, pin2, pin3):
-        """sends output to the corropsonding pins"""
+        """sends output to the corresponding pins"""
         if self.invert:
             pin1 = not pin1
             pin2 = not pin2

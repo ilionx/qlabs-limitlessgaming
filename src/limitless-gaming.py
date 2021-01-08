@@ -37,7 +37,7 @@ if __name__ == "__main__":
                     led.Light(1, 0, 1)
                 else:
                     led.Off()
-                red, yellow, orange = switches.Check()
+                red, yellow, orange = switches.Check() # type: ignore
 
                 print_on_current_line(
                     f"Red:{not red}, Yellow:{not yellow}, Orange:{not orange} time:{t()}")

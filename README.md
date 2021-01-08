@@ -7,16 +7,16 @@ The project started in 2019 in the Q-LABS, here employees, students and others c
 By making this project open source we hope to reach more people, and more people to reach us.
 
 The past 4 months an Intern from Zuyd University has been working on the project, he has mainly been working on the OpenCV and KNN modules.
-Also the main choice of hardware and software are further selected by the intern.
+Also, the main choice of hardware and software are further selected by the intern.
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor_Covenant-v2.0_adopted-blue.svg)](CODE_OF_CONDUCT.md)
 [![GitHub License badge](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Build with Love](https://img.shields.io/badge/built_with-💖-f98888.svg)](CONTRIBUTORS.md)
 
-## Table Of Content
+## Table of Content
 - [Q-LABS Limitless gaming](#q-labs-limitless-gaming)
   - [Intro](#intro)
-  - [Table Of Content](#table-of-content)
+  - [Table of Content](#table-of-content)
   - [Background](#background)
   - [License](#license)
   - [INSTALL](#install)
@@ -43,11 +43,11 @@ Also the main choice of hardware and software are further selected by the intern
 
 Some time ago Job came to Ilionx and Zuyd University with the objective finding a solution for his problem. He, like many others, likes to game every now and then, but his ability to use a normal game controller is limited due to his cerebral paresis.
 
-This is where we (Ilionx) comes into play, as IT-company we've experience with developing new out-of-box solutions for abnormal problems. And with many young developers the spirit is fresh. That's why we adopted this to an Q-LABS project. This is our department where employees can think about and develop out-of-the-box solutions. 
+This is where we (Ilionx) comes into play, as IT-company we've experience with developing new out-of-box solutions for abnormal problems. And with many young developers the spirit is fresh. That's why we adopted this to a Q-LABS project. This is our department where employees can think about and develop out-of-the-box solutions. 
 
 By participating in projects like this, employees get the change to stay a head with new technological developments, stimulate their creativity and gain new knowledge.
 
-The first idea for creating a solution was by using AI and pattern recognition, this way the computer could learn to trigger action when Job wanted to do this, but was unable to do so. 
+The first idea for creating a solution was by using AI and pattern recognition. this way the computer could learn to trigger action when Job wanted to do this but was unable to do so. 
 
 For more info about the project see [Gaming-with-CP](https://www.ilionx.com/blog/gamen-met-cerebrale-parese-dat-kan-gewoon-bij-q-labs/) and [Alumni-Zuyd](https://www.ilionx.com/wp-content/uploads/2020/01/AZM-ilionx.pdf), both articles are in Dutch.
 
@@ -104,8 +104,8 @@ pip 20.0.2 from /usr/lib/python3/dist-packages/pip (python 3.8)
 
 ### Assumptions
 
-- you have python 3.x installed (current version python 3.9, we'll use 3.8.6 since not every packages is updated to 3.9)
-  - if something went wrong while or after the installation, try it agian with this guide:[How to install Python 3 on Windows](https://realpython.com/installing-python/#how-to-install-python-on-windows)
+- you have python 3.x installed (current version python 3.9, we'll use 3.8.6 since not every package is updated to 3.9)
+  - if something went wrong while or after the installation, try it again with this guide: [How to install Python 3 on Windows](https://realpython.com/installing-python/#how-to-install-python-on-windows)
 - you have pip installed, and know how to install packages with pip
   - if you don't feel confident enough to use pip read this guide: [What is PIP](https://realpython.com/what-is-pip/)
 
@@ -153,7 +153,7 @@ You'll need the following hardware to use the system as designed
 - a Jetson Nano development kit
 - a Xbox one or a newer series
 - a Xbox adaptive controller
-There are workarounds to use the [Xbox adaptive controller on the playstation 4](https://www.youtube.com/watch?v=p3p1RTpW4SI), but these aren't tested.
+There are workarounds to use the [Xbox adaptive controller on the Playstation 4](https://www.youtube.com/watch?v=p3p1RTpW4SI), but these aren't tested.
 
 ### Why this hardware?
 
@@ -165,7 +165,7 @@ We use the Xbox adaptive controller, because it enables us to mimic a press of a
 ### Using the program
 
 Currently there is only one piece of code which could be classified as functional. this is working with the camera.
-To start this program use the following commands:
+To start this program, use the following commands:
 
 ```bash
 python ./src/limitless-gaming.py
@@ -185,9 +185,9 @@ This however is not always the case, it's not always easy to explain complex cod
 
 ## CONTRIBUTE
 
-Your able to contribute by opening a new issue, or reacting to an existing issue or opening a pull request against the master branch, this way the community can discus the issue, or changes.
+Your able to contribute by opening a new issue or reacting to an existing issue or opening a pull request against the master branch, this way the community can discus the issue, or changes.
 
-for a more detailed view on how to contribute to this project see [Contributing](CONTRUBITING.md)
+for a more detailed view on how to contribute to this project see [Contributing](CONTRIBUTING.md)
 
 ### Code of Conduct
 

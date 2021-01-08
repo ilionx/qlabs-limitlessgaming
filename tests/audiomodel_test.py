@@ -61,7 +61,7 @@ class ModelTest(unittest.TestCase):
                          "ERROR(test_save_and_load): Models are not the same")
 
     def test_predict(self):
-        """test the prdict function from the KNC functions"""
+        """test the predict function from the KNC functions"""
         model = KNC.load_model(
             "./data/models/K-nearest neighbors/trained.knn-model")
         _, sound = KNC.load_training_file("./data/sounds/click.wav")

@@ -5,7 +5,7 @@ import unittest
 class ExampleTests(unittest.TestCase):
     """A unittest with some simple test cases"""
 
-    def test_succes(self):
+    def test_success(self):
         """This test will succeed"""
         self.assertEqual(True, True)
         self.assertEqual("true".title(), "True")

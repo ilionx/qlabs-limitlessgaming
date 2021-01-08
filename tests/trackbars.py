@@ -16,7 +16,7 @@ cv2.createTrackbar("saturationHigh", "trackbars", 255, 255, nothing)
 cv2.createTrackbar("valueLow", "trackbars", 100, 255, nothing)
 cv2.createTrackbar("valueHigh", "trackbars", 100, 255, nothing)
 
-### Select an image for which you'de like to check the HSV values
+### Select an image for which you'd like to check the HSV values
 image = cv2.imread("tests/assets/smarties.bmp")
 # image = cv2.imread("tests/assets/smarties.jpg")
 # image = cv2.imread("tests/assets/flower_contour.jpg")
@@ -36,8 +36,8 @@ while running:
     lower_bound = np.array([hLow, sLow, vLow])
     upper_bound = np.array([hHigh, sHigh, vHigh])
 
-    FGmask = cv2.inRange(hsv, lower_bound, upper_bound)
-    cv2.imshow("mask", FGmask)
+    fourground_mask = cv2.inRange(hsv, lower_bound, upper_bound)
+    cv2.imshow("mask", fourground_mask)
 
     if cv2.waitKey(1) == ord('q'):
         running = False
