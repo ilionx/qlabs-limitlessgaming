@@ -8,19 +8,59 @@ from sklearn.neighbors import KNeighborsClassifier as KNC
 
 
 def predict(knc_model: KNC, mfcc_sample: list):
-    """returns a prediction from the given model"""
+    """
+    make a prediction with the given model
+    
+    Parameters
+    ----------
+    knc_model: KNC
+        the model which will be predict
+    mfcc_sample: list
+        the sample which will be used as input for the prediction
+    
+    Returns
+    -------
+    prediction:string
+        the name of the sound that the model predicts
+    
+    Example
+    -------
+    >>> function name(arguments)
+    result
+    """
     return knc_model.predict([mfcc_sample])[0]
 
 
 def save_model(model_to_save: KNC, filename: str):
-    """Saves <model_to_save> to <filename> file for later reuse"""
+    """
+    save the model to a file for later use
+    
+    Parameters
+    ----------
+    model_to_save: KNC
+        the model which will be saved
+    filename: str
+        the name of the file to save the model to
+    """
     model_file = open(filename, "wb")
     pickle.dump(model_to_save, model_file)
     model_file.close()
 
 
 def load_model(filename: str) -> KNC:
-    """load an KNC model from <filename>"""
+    """
+    load a knc model from a file
+    
+    Parameters
+    ----------
+    filename: str
+        the name of the file containing the model
+    
+    Returns
+    -------
+    loaded_model:KNC
+        the model loaded from the file
+    """
     model_file = open(filename, "rb")
     loaded_model = pickle.load(model_file)
     model_file.close()
@@ -28,13 +68,39 @@ def load_model(filename: str) -> KNC:
 
 
 def model_score(knc_model: KNC, mfcc_samples):
-    """returns the accuracy of the given model"""
+    """
+    get the accuracy of the given model
+    
+    Parameters
+    ----------
+    knc_model: KNC
+        the model of which the score is computed
+    mfcc_samples: list
+        the samples with which the score is computed
+    
+    Returns
+    -------
+    score:float
+        a score indicating the accuracy of the given model
+    """
     return knc_model.score(mfcc_samples[0], mfcc_samples[1])
 
 
 def load_all_training_data(training_data_folder_name: str):
-    """loads all data classified in with the name of the
-    folder as the class, and the files as the examples"""
+    """
+    loads all data classified in with the name of the
+    folder as the class, and the files as the examples
+    
+    Parameters
+    ----------
+    training_data_folder_name: str
+        the name of the folder containing, subfolders with training data
+    
+    Returns
+    -------
+    training_data: list
+        a list of training data
+    """
     os.chdir(training_data_folder_name)
     training_data = []
     folders = []
@@ -50,9 +116,16 @@ def load_all_training_data(training_data_folder_name: str):
 def split_data(data_to_split):
     """
     Split training data into classes and data
-    Return
-    ---
-    classes, data
+
+    Parameters
+    ----------
+    data_to_split: list
+        a list which contains training data and classes
+    
+    Returns
+    -------
+    (classes, data): tuple
+        a tuple of training data and their classes
     """
     known_classes = []
     data_from_classes = []
@@ -63,7 +136,19 @@ def split_data(data_to_split):
 
 
 def reshape(mfcc, size: int):
-    """reshapes a mfcc to a given size"""
+    """
+    reshapes a mfcc to a given size
+    
+    Parameters
+    ----------
+    mfcc: list
+        this is a given sound sample, which needs to be transformed
+    
+    Returns
+    -------
+    new_mfcc:list
+        this is the mfcc reshaped to the given size
+    """
     new_mfcc = []
     current_size = len(mfcc[0])
     factor = current_size // size
@@ -86,7 +171,19 @@ def reshape(mfcc, size: int):
 
 
 def load_training_data(training_data_folder_name: str, ret_length=False):
-    """loads training data from the given file name"""
+    """
+    loads training data from the given file name
+    
+    Parameters
+    ----------
+    training_data_folder_name: str
+        the name of the folder, which contains multiple training data files
+    
+    Returns
+    -------
+    (class, data):tuple
+        the data and class will both be a list of multiple entries.
+    """
     os.chdir(training_data_folder_name)
     files = []
     for file_or_folder in os.listdir():
@@ -113,7 +210,19 @@ def load_training_data(training_data_folder_name: str, ret_length=False):
 
 
 def load_training_file(training_data_file_name: str, ret_length=False):
-    """loads training data from the given file name"""
+    """
+    loads training data from the given file name
+    
+    Parameters
+    ----------
+    training_data_file_name: str
+        the name of the data file
+    
+    Returns
+    -------
+    (classname, mfcc):tuple
+        the class and data will be returned
+    """
     file_data, samplerate = sf.read(training_data_file_name)
     length = len(file_data)
     mfcc = feature.mfcc(
@@ -125,8 +234,20 @@ def load_training_file(training_data_file_name: str, ret_length=False):
         return (training_data_file_name, mfcc)
 
 
-def transform_data(data_to_transform):
-    """Transforms data_to_transform from a 2d array to a 1d array"""
+def transform_data(data_to_transform:list):
+    """
+    Transforms data_to_transform from a 2d array to a 1d array
+    
+    Parameters
+    ----------
+    data_to_transform: list
+        the data which needs to be transformed
+    
+    Returns
+    -------
+    new_data:list
+        the transformed data
+    """
     new_data = []
     for row in data_to_transform:
         new_data += list(row)
@@ -134,7 +255,18 @@ def transform_data(data_to_transform):
 
 
 def train_model(knc_model: KNC, training_data: list, training_classes: list):
-    """trains a given model with given data"""
+    """
+    Trains a given model with given data
+    
+    Parameters
+    ----------
+    knc_model: KNC
+        The model which will be trained with the given training data
+    training_data: list
+        the raw data with which the model will be trained
+    training-classes: list
+        the class to which the data corresponds
+    """
     known_classes = []
     new_data = []
     for i, training_class in enumerate(training_data):

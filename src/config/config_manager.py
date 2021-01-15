@@ -9,13 +9,6 @@ class ConfigManager:
     ----------
     filename:str
         The relative path to the configuration file
-
-    Methods
-    -------
-    parse()
-        Parses a configuration file and returns a configuration
-    save(configuration, config_name=None)
-        Saves the current configuration in the configuration file
     """
 
     def __init__(self, filename):

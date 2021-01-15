@@ -16,18 +16,6 @@ class Microphone:
         the amount of samples per second
     running:bool
         indicator if the stream is running
-    Methods
-    -------
-    create_hann_window(size)
-        creates a Hann window of the given size
-    sound_with_window(sound,window)
-        executes a windowfunction on a sound sample
-    audio_to_fft(sound_array, samplerate,duration)
-        transforms a sound array to FFT format
-    callback_function(inputdata,_outdate,_frames,_time,status)
-        this is the default function called by `stream`
-    stream(callback_function)
-        this function is called with every frame
     """
 
     def __init__(self, HOP_LENGTH=512, N_FFT=2048, SAMPLE_RATE=44100,
