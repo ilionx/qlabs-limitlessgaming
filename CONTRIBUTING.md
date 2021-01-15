@@ -18,12 +18,12 @@ before you contribute please have a look at [our Code-of-Conduct](CODE_OF_CONDUC
 
 
 ## Features, bugs and other issues
-If you would like to report a bug, or request a feature [Open an issue](https://github.com/Ilionx/<repo_name>/issues), and select the appropriate template 
+If you would like to report a bug, or request a feature [Open an issue](https://github.com/ilionx/qlabs-limitlessgaming/issues/new/choose), and select the appropriate template 
 ### Duplicate
 please beware to not open a duplicate issue, please first search for the issue, of you didn't find any issue that like yours, feel free to open a new one.
 
 ## Contributing code
-If you would like to start contributing to the code, select an open issue, Start coding and [open a pull-request ](https://github.com/Ilionx/<repo_name>/pulls) 
+If you would like to start contributing to the code, select an open issue, Start coding and [open a pull-request ](https://github.com/ilionx/qlabs-limitlessgaming/compare) 
 ### Coding conventions
 We'll use the [standard python coding conventions](https://www.python.org/dev/peps/pep-0008/), these could automatically be checked with `Pylint`, or `Flake8` and even formatted with `autopep8` or `Black` --> Alt + Shift + F is the standard shortcut for auto-formatting a whole document in Visual Studio Code
 ### Branching
