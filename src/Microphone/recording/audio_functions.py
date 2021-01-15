@@ -7,7 +7,28 @@ import sounddevice as sd
 
 
 def tone_generater(duration, sample_rate, freq):
-    """generate a single clear tone"""
+    """
+    generate a single clear tone
+
+    Parameters
+    ----------
+    duration: int
+        the duration in seconds to generate the tone
+    sample_rate:int
+    freq:int
+
+    Returns
+    -------
+    tone:np.array[float]
+        a array of float values representing a tone
+
+    Example
+    -------
+    >>> tone_generater(0.02, 44100, 250)                         
+    array([ 0.00000000e+00,  3.56114331e-02,  7.11776904e-02,  1.06653653e-01,
+        ...
+        -7.11776904e-02, -3.56114331e-02])
+    """
     if duration is None or sample_rate is None or freq is None:
         raise Exception(
             "Expected configuration, got duration:{}, sample_rate:{}, freq:{}".
@@ -16,9 +37,33 @@ def tone_generater(duration, sample_rate, freq):
     return np.sin(2*np.pi * time * freq)
 
 
-def multi_tone_generater(duration, sample_rate, freqs, raw=False):
-    """generate a multi-tone"""
-    if duration is None or sample_rate is None or freqs is None:
+def multi_tone_generater(duration, sample_rate, frequencies, raw=False):
+    """
+    generate a multi-tone
+
+    Parameters
+    ----------
+    duration: int
+        the duration in seconds
+    sample_rate:int
+        the number of data points to generate per second
+    frequencies:list
+        a list of frequencies to combine
+    raw:bool
+        a indicator, this will also return the raw tone format(before summation)
+
+    Returns
+    -------
+    muliple tones:np.array[float]
+        a array with muliple tones combined
+
+    Example
+    -------
+    >>> multi_tone_generater(0.02, 44100, [100, 1000, 400, 250])
+    array([ 0.00000000e+00,  2.48812353e-01,  4.94514167e-01,  7.34053874e-01,
+        ...
+        -4.94514167e-01, -2.48812353e-01])
+    """
         raise Exception(
             "Expected configuration, got duration:{}, sample_rate:{}, freq:{}".
             format(duration, sample_rate, freqs))

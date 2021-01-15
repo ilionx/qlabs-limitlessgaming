@@ -3,7 +3,29 @@ import Jetson.GPIO as GPIO # type: ignore
 
 
 class RGBled:
-    """this class can manage 1 RGB led"""
+    """
+    This class can manage 1 RGB led
+
+    Attributes
+    ----------
+    red:int
+        The pin number of the red common
+    green:int
+        The pin number of the green common
+    blue:int
+        The pin number of the blue common
+
+    Methods
+    -------
+    cleanup()
+        Cleans all the GPIO pins
+    light(red, green, blue)
+        Sets the light of the color to the corresponding value
+    on()
+        Turns on all the colors
+    off()
+        Turns off the light
+    """
 
     def __init__(self, red=7, green=12, blue=15):
         print(f"using led:{red},{green},{blue}")
@@ -16,10 +38,22 @@ class RGBled:
         GPIO.setup(blue, GPIO.OUT, initial=GPIO.LOW)
 
     def cleanup(self):
+        """cleans the GPIO pins"""
         GPIO.cleanup((self.red, self.green, self.blue))
 
     def light(self, red: int, green: int, blue: int):
-        """sets the light of the color to the value"""
+        """
+        Sets the light of the color to the value
+
+        Parameters
+        ----------
+        red:int
+            0 for low, 1 for high
+        green:int
+            0 for low, 1 for high
+        blue:int
+            0 for low, 1 for high
+        """
         self.is_on = (red or green or blue)
         if red:
             GPIO.output(self.red, GPIO.HIGH)

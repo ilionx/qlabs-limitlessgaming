@@ -3,8 +3,16 @@ import Jetson.GPIO as GPIO # type: ignore
 
 
 class MultiSwitchIn:
-    """This class is used to read multiple switches as input"""
+    """
+    This class is used to read multiple switches as input
 
+    Attributes
+    ----------
+
+    Methods
+    -------
+
+    """
     def __init__(self, red: int, green: int, blue: int):
         self.red = red
         self.green = green
@@ -17,10 +25,25 @@ class MultiSwitchIn:
         self.cleanup()
 
     def cleanup(self):
+        """
+        cleanup the GPIO pins, this prevents future errors when they are reinitialized
+        """
         GPIO.cleanup((self.red, self.green, self.blue))
 
     def check(self):
-        """checks the input of all the pins"""
+        """
+        checks the input of all the pins
+        
+        Parameters
+        ----------
+        parameter: variable type
+            parameter description
+        
+        Returns
+        -------
+        return variable:variable type
+            parameter description
+        """
         red = GPIO.input(self.red)
         green = GPIO.input(self.green)
         blue = GPIO.input(self.blue)
@@ -28,8 +51,19 @@ class MultiSwitchIn:
 
 
 class MultiSwitchOut:
-    """This class is used to write multiple switches as output"""
+    """
+    This class is used to write multiple switches as output
 
+    Attributes
+    ----------
+    class attribute:variable type
+        attribute description
+
+    Methods
+    -------
+    method name(arguments)
+        method description
+    """
     def __init__(self, pins, invert=False, start=0):
         self.pin1 = pins[0]
         self.pin2 = pins[1]
@@ -47,7 +81,19 @@ class MultiSwitchOut:
         GPIO.cleanup((self.pin1, self.pin2, self.pin3))
 
     def send(self, pin1, pin2, pin3):
-        """sends output to the corresponding pins"""
+        """
+        sends output to the corresponding pins
+        
+        Parameters
+        ----------
+        parameter: variable type
+            parameter description
+        
+        Returns
+        -------
+        return variable:variable type
+            parameter description
+        """
         if self.invert:
             pin1 = not pin1
             pin2 = not pin2
@@ -67,7 +113,19 @@ class MultiSwitchOut:
 
 
 class SingleSwitchOut:
-    """use a single pin on the GPIO board to send outputs from"""
+    """
+    Use a single pin on the GPIO board to send outputs from
+
+    Attributes
+    ----------
+    class attribute:variable type
+        attribute description
+
+    Methods
+    -------
+    method name(arguments)
+        method description
+    """
 
     def __init__(self, pin: int):
         self.pin = pin
@@ -77,7 +135,19 @@ class SingleSwitchOut:
         GPIO.cleanup(self.pin)
 
     def send(self, pin):
-        """send output to the pin"""
+        """
+        send output to the pin
+
+        Parameters
+        ----------
+        parameter: variable type
+            parameter description
+
+        Returns
+        -------
+        return variable:variable type
+            parameter description
+        """
         if pin:
             GPIO.output(self.pin, GPIO.HIGH)
         else:

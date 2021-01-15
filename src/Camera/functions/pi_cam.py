@@ -7,7 +7,27 @@ def gstreamer_pipeline(
     framerate=21,
     flip_method=0,
 ):
-    """sets up a string to enable the picam"""
+    """
+    sets up a string to enable the picam
+    
+    Parameters
+    ----------
+    capture_res:tuple
+        int,int format
+        the resolution of the captured frame
+    display:tuple
+        int,int format
+        the resolution of the frame returned
+    framerate:int
+        the number of frames returned
+    flip_method:int
+        whether to flip the frame
+    
+    Returns
+    -------
+    str
+        a setup string for opening a picam stream
+    """
     return (
         "nvarguscamerasrc ! "
         "video/x-raw(memory:NVMM), "
@@ -29,7 +49,21 @@ def gstreamer_pipeline(
 
 
 def cam_setup(setup=1, framerate=21):
-    """returns a pi_cam setup"""
+    """
+    returns a pi_cam setup
+    
+    Parameters
+    ----------
+    setup:int
+        a integer indicating a predefined setup
+    framerate:int
+        the number of frames per second
+    
+    Returns
+    -------
+    str
+        a string used to open a picam stream
+    """
     if setup == 1:
         settings = gstreamer_pipeline()
     if setup == 2:

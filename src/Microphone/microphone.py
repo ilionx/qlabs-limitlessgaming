@@ -7,8 +7,28 @@ from scipy.fft import rfft
 
 
 class Microphone:
-    """this class provides a simple interface to the Microphone"""
-
+    """
+    This class provides a simple interface to the Microphone
+    
+    Attributes
+    ----------
+    sample_rate:int
+        the amount of samples per second
+    running:bool
+        indicator if the stream is running
+    Methods
+    -------
+    create_hann_window(size)
+        creates a Hann window of the given size
+    sound_with_window(sound,window)
+        executes a windowfunction on a sound sample
+    audio_to_fft(sound_array, samplerate,duration)
+        transforms a sound array to FFT format
+    callback_function(inputdata,_outdate,_frames,_time,status)
+        this is the default function called by `stream`
+    stream(callback_function)
+        this function is called with every frame
+    """
     def __init__(self, HOP_LENGTH=512, N_FFT=2048, SAMPLE_RATE=44100,
                  BLOCK_SIZE=1024, DURATION=3, THRESHOLD=0.1) -> None:
         self.hop_length = HOP_LENGTH
@@ -90,20 +110,16 @@ class Microphone:
 
         Parameters
         ----------
-        sound_array: array[float]
+        sound_array: np.array[float]
             a array with the sound signal, in Amplitude over time
-
-        [OPTIONAL]
         samplerate: int
             a integer indicating the speed with which samples were taken
-
-        [OPTIONAL]
         duration: int
             a integer indicating the duration, in seconds, for howlong samples were taken.
 
         Returns
         -------
-        ret_arr : array[float]
+        ret_arr : np.array[float]
             a array with the MFCC output of the FFT input
 
         Example
@@ -125,7 +141,16 @@ class Microphone:
         return real_y, real_x
 
     def callback_function(self, inputdata, _outdata, _frames, _time, status):
-        """This function will be called when the stream has received data"""
+        """
+        This function will be called when the stream has received data
+        
+        Parameters
+        ----------
+        inputdate: list
+            the sound sample
+        status:string
+            a error message from the stream
+        """
         if status:
             print(status)
         new_l = []
@@ -140,7 +165,14 @@ class Microphone:
             pass
 
     def stream(self, callback_function=None):
-        """This function will receive data from the audio device"""
+        """
+        This function will receive data from the audio device
+        
+        Parameters
+        ----------
+        callback_function: function
+            this function will be called with every frame
+        """
         if callback_function is None:
             callback_function = self.callback_function
         self.start = t.time()

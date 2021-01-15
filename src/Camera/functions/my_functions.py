@@ -2,9 +2,22 @@
 from datetime import datetime
 
 def print_on_current_line(*args):
-    """prints all given *args on the same line"""
+    """
+    prints all given *args on the same line
+
+    Parameters
+    ----------
+    *args
+        a set of arguments to print on the current line 
+    """
     print(*args, end=20 * " " + "\r")
 
 def get_time():
-    """returns the current date and time"""
-    return str(datetime.now().time())[:8]
+    """
+    get the current date and time
+
+    Returns
+    -------
+    datetime_string:str
+        the current time in %H:%M:%S format
+    """

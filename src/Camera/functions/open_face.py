@@ -5,7 +5,21 @@ from src.Camera.functions.pi_cam import cam_setup
 
 
 def filter_contour(contour_list, size=20):
-    """Filter a array of contours based on there area"""
+    """
+    Filter a array of contours based on there area
+    
+    Parameters
+    ----------
+    contour_list : list
+        list of contours
+    size : int
+        minimum size of the area of the contours to be included
+    
+    Returns
+    -------
+    filtered_contour_list:list
+        a list of contours, sorted by size, and filtered
+    """
     contour_list = sorted(contour_list, key=lambda x_coordinate: cv2.contourArea(
         x_coordinate), reverse=True)
     filtered_contour_list = []
@@ -25,7 +39,21 @@ def filter_contour(contour_list, size=20):
 def find_contour(frame, display_width, settings=(41, 84, 40, 255, 79, 255), convert=True,
                  show=False, draw=False, figure="rec", color=(255, 255, 0),
                  pos=False, return_all_contours=False):
-    """returns all contours found in a image"""
+    """
+    Find all contours in a image
+    
+    Parameters
+    ----------
+    frame : list
+        this is the image in which the contours must be found
+    settings: tuple
+        a tuple of 6 items which specify the color in HSV format.
+    
+    Returns
+    -------
+    contours:list
+        a list of all contours found in the image
+    """
     hue_low = settings[0]
     hue_high = settings[1]
     saturation_low = settings[2]
@@ -73,7 +101,24 @@ def find_contour(frame, display_width, settings=(41, 84, 40, 255, 79, 255), conv
 def find_cascade(cascade_object, frame, scale_factor=2.5, min_neighbors=5,
                  draw=False, convert_image=False, start_x=0, start_y=0,
                  color=(255, 0, 0), draw_frame=None):
-    """returns all found cascades in an image"""
+    """
+    find all cascades in an image
+    
+    Parameters
+    ----------
+    cascade_object: `cv2.CascadeClassifier <https://www.programcreek.com/python/example/79435/cv2.CascadeClassifier>`_
+        this is a cascade classifier which is used to find a object in the frame
+    frame: list
+        this is the image in which the object is found
+    scale_factor: float
+        this is a hyperparameter used by the cascade_object
+    
+    Returns
+    -------
+    list
+        a list with all locations of the objects in the image
+        in (x,y,width,height) format.
+    """
     if convert_image:
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     objects = cascade_object.detectMultiScale(
@@ -88,7 +133,28 @@ def find_cascade(cascade_object, frame, scale_factor=2.5, min_neighbors=5,
 def stream(factor=2, display=[1280, 960],
            cascade_folder="./cascades/", cam=2, framerate=21,
            pos=False, detect=2):
-    """opens and yields a camera stream"""
+    """
+    Opens and yields a camera stream
+    
+    Parameters
+    ----------
+    factor : int
+        this is the number of times the image will be cropped before analyses.
+        higher number will increase performance, but decreases the accuracy
+    display: list
+        this is the size of the display frame
+    cascade_folder : str
+        the relative locations of the folder containing the cascades
+    framerate: int
+        the number of frames per second captured by the camera
+    
+    Yields
+    ------
+    tuple
+        containing filming, shoot and passen
+        filming is a boolean indicating whether the camera is open
+        shoot and passen are booleans indicating whether the triggers and true
+    """
     display_height = display[0]//factor
     display_width = display = 1//factor
     face_cascade = cv2.CascadeClassifier(
