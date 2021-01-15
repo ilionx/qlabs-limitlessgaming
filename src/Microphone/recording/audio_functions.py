@@ -64,10 +64,11 @@ def multi_tone_generater(duration, sample_rate, frequencies, raw=False):
         ...
         -4.94514167e-01, -2.48812353e-01])
     """
+    if duration is None or sample_rate is None or frequencies is None:
         raise Exception(
             "Expected configuration, got duration:{}, sample_rate:{}, freq:{}".
-            format(duration, sample_rate, freqs))
-    tone = [tone_generater(duration, sample_rate, i) for i in freqs]
+            format(duration, sample_rate, frequencies))
+    tone = [tone_generater(duration, sample_rate, i) for i in frequencies]
     if raw:
         return sum(tone), tone
     return sum(tone)
@@ -104,12 +105,13 @@ def print_volume_bar(indata, *_args):
 
 
 if __name__ == "__main__":
-    input_freqs = [100, 1000, 400, 250]
-    sound, sounds = multi_tone_generater(0.02, 44100, input_freqs, raw=True)
+    input_frequencies = [100, 1000, 400, 250]
+    sound, sounds = multi_tone_generater(
+        0.02, 44100, input_frequencies, raw=True)
     fig, axs = plt.subplots(len(sounds)+1)
     for i, x in enumerate(sounds):
         axs[i].plot(x)
-        axs[i].set_title(str(input_freqs[i]))
+        axs[i].set_title(str(input_frequencies[i]))
     axs[len(sounds)].plot(sound)
-    axs[len(sounds)].set_title("+".join([str(x) for x in input_freqs]))
+    axs[len(sounds)].set_title("+".join([str(x) for x in input_frequencies]))
     plt.show()

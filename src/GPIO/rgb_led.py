@@ -1,5 +1,5 @@
 """Used to manage a single RGB led, with the GPIO pins"""
-import Jetson.GPIO as GPIO # type: ignore
+import Jetson.GPIO as GPIO  # type: ignore
 
 
 class RGBled:
@@ -67,6 +67,7 @@ class RGBled:
             GPIO.output(self.blue, GPIO.HIGH)
         else:
             GPIO.output(self.blue, GPIO.LOW)
+
     def on(self):
         """sets all the light on"""
         self.light(1, 1, 1)
@@ -74,8 +75,10 @@ class RGBled:
     def off(self):
         """turns all the lights off"""
         self.light(0, 0, 0)
+
     def __del__(self):
         self.cleanup()
+
 
 if __name__ == "__main__":
     import time

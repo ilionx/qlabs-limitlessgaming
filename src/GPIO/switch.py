@@ -1,5 +1,5 @@
 """enables to use GPIO pins as output"""
-import Jetson.GPIO as GPIO # type: ignore
+import Jetson.GPIO as GPIO  # type: ignore
 
 
 class MultiSwitchIn:
@@ -13,6 +13,7 @@ class MultiSwitchIn:
     -------
 
     """
+
     def __init__(self, red: int, green: int, blue: int):
         self.red = red
         self.green = green
@@ -64,6 +65,7 @@ class MultiSwitchOut:
     method name(arguments)
         method description
     """
+
     def __init__(self, pins, invert=False, start=0):
         self.pin1 = pins[0]
         self.pin2 = pins[1]

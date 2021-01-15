@@ -29,6 +29,7 @@ class Microphone:
     stream(callback_function)
         this function is called with every frame
     """
+
     def __init__(self, HOP_LENGTH=512, N_FFT=2048, SAMPLE_RATE=44100,
                  BLOCK_SIZE=1024, DURATION=3, THRESHOLD=0.1) -> None:
         self.hop_length = HOP_LENGTH

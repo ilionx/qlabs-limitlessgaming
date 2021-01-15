@@ -7,8 +7,8 @@ class Logger:
     this class helps logging signals to the local file system
 
     Logger
-    ===
-    By default the log files name is `log.txt`
+    ======
+    By default the log files name is `log.csv`
 
     another file can be used, it's plain text format  
 
@@ -18,7 +18,7 @@ class Logger:
     for another format the python datetime format is used instead.  
 
     Datetime timeformat
-    ---
+    -------------------
     |Directive|Meaning|Example|
     |:---:|:---|---|
     |%a|Abbreviated weekday name.|Sun, Mon, ...|

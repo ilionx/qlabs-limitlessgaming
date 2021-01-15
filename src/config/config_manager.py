@@ -17,6 +17,7 @@ class ConfigManager:
     save(configuration, config_name=None)
         Saves the current configuration in the configuration file
     """
+
     def __init__(self, filename):
         if filename is None:
             raise Exception("No configuration file found!")
