@@ -1,4 +1,4 @@
-import src.GPIO.rgb_led as rgb
+import GPIO.rgb_led as rgb
 
 
 class Status:
@@ -57,7 +57,7 @@ class Status:
         if status.title() in self.possible_states:
             self.status = status.title()
         else:
-            raise Exception("Unknown status: %s" % status)
+            raise Exception("Unknown state: %s" % status)
 
     def get_status(self):
         """

@@ -1,7 +1,7 @@
 """Simple wrapper for using open-cv"""
 import cv2
 import numpy as np
-from src.Camera.functions.pi_cam import cam_setup
+from Camera.functions.pi_cam import cam_setup
 
 
 def filter_contour(contour_list, size=20):
