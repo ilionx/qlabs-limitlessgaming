@@ -14,5 +14,6 @@
         "GPIO",
         "Ilionx",
         "numpy"
-    ]
+    ],
+    "restructuredtext.confPath": "${workspaceFolder}\\dox\\source"
 }

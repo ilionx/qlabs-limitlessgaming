@@ -6,17 +6,54 @@
         {
             "label": "Run all tests",
             "type": "shell",
-            "command": "python -m unittest discover -s ./tests/ -p \"*_test.py\"",
+            "command": [
+                "./Scripts/activate;",
+                "python -m unittest discover -s ./tests/ -p \"*_test.py\";"
+            ],
             "group": {
                 "kind": "test",
                 "isDefault": true
             },
-            "dependsOn": "Activate virtual environment"
         },
         {
-            "label": "Activate virtual environment",
+            "label": "Build documentation",
             "type": "shell",
-            "command": "& c:/Users/PBollen/project/qlabs-limitlessgaming/Scripts/Activate.ps1; python -m unittest discover -s ./tests/ -p \"*_test.py\"",
-        }
+            "command": [
+                "./Scripts/activate;",
+                "cd ./dox/;",
+                "./make.bat html;"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Clean documentation"
+            ]
+        },
+        {
+            "label": "Clean documentation",
+            "type": "shell",
+            "command": [
+                "cd ./dox/;",
+                "./make.bat clean;"
+            ],
+            "group": "build",
+        },
+        {
+            "label": "Launch documentation",
+            "type": "shell",
+            "command": [
+                "cd dox/build/html;",
+                "python -m http.server;",
+            ]
+        },
+        {
+            "label": "Open documentation",
+            "type": "shell",
+            "command": [
+                "Start-Process \"http://localhost:8000\";"
+            ],
+        },
     ]
 }
