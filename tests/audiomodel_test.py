@@ -1,8 +1,10 @@
 """A simple testcase for the audio model classifier"""
 import os
+import sys
+sys.path.insert(0, os.path.abspath('./src'))
 import unittest
 
-import src.Microphone.knn_classifier as KNC
+import Microphone.knn_classifier as KNC
 from sklearn.neighbors import KNeighborsClassifier
 
 

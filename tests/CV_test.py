@@ -1,7 +1,11 @@
 """A simple testcase for the computer vision functions"""
+import os
+import sys
+sys.path.insert(0, os.path.abspath('./src'))
+
 import unittest
 import cv2
-import src.Camera.functions.open_face as face_recognition
+import Camera.functions.open_face as face_recognition
 
 ASSETS_FOLDER = "./tests/assets/"
 
