@@ -11,21 +11,23 @@ from Camera.camera import Camera
 def filter_contour(contour_list, size=20):
     """
     Filter a array of contours based on there area
-    
+
     Parameters
     ----------
     contour_list : list
         list of contours
     size : int
         minimum size of the area of the contours to be included
-    
+
     Returns
     -------
     filtered_contour_list:list
         a list of contours, sorted by size, and filtered
     """
-    contour_list = sorted(contour_list, key=lambda x_coordinate: cv2.contourArea(
-        x_coordinate), reverse=True)
+    contour_list = sorted(contour_list,
+                          key=lambda x_coordinate: cv2.contourArea(
+                              x_coordinate),
+                          reverse=True)
     filtered_contour_list = []
     cnt_area = True
     i = 0
@@ -41,16 +43,19 @@ def filter_contour(contour_list, size=20):
 
 
 @deprecated(Scanner.find_contours)
+def find_contour(frame, display_width, settings=(41, 84, 40, 255, 79, 255),
+                 show=False, pos=False,
+                 return_all_contours=True):
     """
     Find all contours in a image
-    
+
     Parameters
     ----------
     frame : list
         this is the image in which the contours must be found
     settings: tuple
         a tuple of 6 items which specify the color in HSV format.
-    
+
     Returns
     -------
     contours:list
@@ -64,10 +69,7 @@ def filter_contour(contour_list, size=20):
     value_high = settings[5]
     lower_bound = np.array([hue_low, saturation_low, value_low])
     upper_bound = np.array([hue_high, saturation_high, value_high])
-    if convert:
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    else:
-        hsv = frame
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     foreground_mask = cv2.inRange(hsv, lower_bound, upper_bound)
     if show:
         cv2.imshow("foreground_mask", foreground_mask)
@@ -75,6 +77,7 @@ def filter_contour(contour_list, size=20):
         foreground_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]
     if return_all_contours:
         return contours
+    # TODO: Seperate function from above
     trigger = False
     return_x, return_y = 0, 0
     filtered_contour_list = filter_contour(contours)
@@ -85,13 +88,6 @@ def filter_contour(contour_list, size=20):
         # the (display_height // factor)
         if y_coordinate < display_width // 2:
             trigger = True
-        if draw:
-            if figure == "rec":
-                cv2.rectangle(frame, (x_coordinate, y_coordinate),
-                              (x_coordinate+width, y_coordinate+height), color, 3)
-            elif figure == "dot":
-                cv2.circle(
-                    frame, (x_coordinate, y_coordinate), 2, color, -1)
         if pos and return_x == 0 and return_y == 0:
             return_x, return_y = x_coordinate + \
                 (width//2), y_coordinate + (height//2)
@@ -105,16 +101,17 @@ def find_cascade(cascade_object, frame, scale_factor=2.5, min_neighbors=5,
                  color=(255, 0, 0), draw_frame=None):
     """
     find all cascades in an image
-    
+
     Parameters
     ----------
-    cascade_object: `cv2.CascadeClassifier <https://www.programcreek.com/python/example/79435/cv2.CascadeClassifier>`_
-        this is a cascade classifier which is used to find a object in the frame
+    cascade_object:
+        this is a cascade classifier which is used to find a object in
+        the frame
     frame: list
         this is the image in which the object is found
     scale_factor: float
         this is a hyperparameter used by the cascade_object
-    
+
     Returns
     -------
     list
@@ -127,8 +124,12 @@ def find_cascade(cascade_object, frame, scale_factor=2.5, min_neighbors=5,
         frame, scale_factor, min_neighbors)
     for (x_coordinate, y_coordinate, width, height) in objects:
         if (draw and draw_frame.any()):
-            cv2.rectangle(draw_frame, (start_x+x_coordinate, start_y+y_coordinate),
-                          (start_x+x_coordinate+width, start_y+y_coordinate+height), color, 3)
+            cv2.rectangle(draw_frame,
+                          (start_x+x_coordinate,
+                           start_y+y_coordinate),
+                          (start_x+x_coordinate+width,
+                           start_y+y_coordinate+height),
+                          color, 3)
         yield (x_coordinate, y_coordinate, width, height)
 
 
@@ -138,7 +139,7 @@ def stream(factor=2, display=[1280, 960],
            pos=False, detect=2):
     """
     Opens and yields a camera stream
-    
+
     Parameters
     ----------
     factor : int
@@ -150,7 +151,7 @@ def stream(factor=2, display=[1280, 960],
         the relative locations of the folder containing the cascades
     framerate: int
         the number of frames per second captured by the camera
-    
+
     Yields
     ------
     tuple
@@ -158,7 +159,6 @@ def stream(factor=2, display=[1280, 960],
         filming is a boolean indicating whether the camera is open
         shoot and passen are booleans indicating whether the triggers and true
     """
-    display_height = display[0]//factor
     display_width = display = 1//factor
     face_cascade = cv2.CascadeClassifier(
         cascade_folder+'haarcascade_frontalface_default.xml')
@@ -182,13 +182,17 @@ def stream(factor=2, display=[1280, 960],
         # but only for the gray scale (0 to 255)
         if detect in (2, 3):
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            for (face_x, face_y, face_w, face_h) in find_cascade(face_cascade, gray,
-                                                                 draw=True, draw_frame=frame):
+            for (face_x, face_y, face_w, face_h) in find_cascade(
+                face_cascade,
+                gray,
+                draw=True,
+                    draw_frame=frame):
                 # NOTE: increase accuracy and performance
                 # the program checks only for smiles in the face region
                 # NOTE: to reduce false positives
                 # the smile is on the bottom half of the face
-                # it begins on the left half side, and ends on the right half side
+                # it begins on the left half side, and ends on the right half
+                # side
                 region_of_interest = gray[face_y: face_y +
                                           face_h, face_x: face_x + face_w]
                 region_of_interest = region_of_interest[len(
