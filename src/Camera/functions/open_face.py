@@ -2,8 +2,12 @@
 import cv2
 import numpy as np
 from Camera.functions.pi_cam import cam_setup
+from libs.decorators import deprecated
+from Camera.scanner import Scanner
+from Camera.camera import Camera
 
 
+@deprecated(Scanner.filter_contours)
 def filter_contour(contour_list, size=20):
     """
     Filter a array of contours based on there area
@@ -36,9 +40,7 @@ def filter_contour(contour_list, size=20):
     return filtered_contour_list
 
 
-def find_contour(frame, display_width, settings=(41, 84, 40, 255, 79, 255), convert=True,
-                 show=False, draw=False, figure="rec", color=(255, 255, 0),
-                 pos=False, return_all_contours=False):
+@deprecated(Scanner.find_contours)
     """
     Find all contours in a image
     
@@ -130,6 +132,7 @@ def find_cascade(cascade_object, frame, scale_factor=2.5, min_neighbors=5,
         yield (x_coordinate, y_coordinate, width, height)
 
 
+@deprecated(Camera.read)
 def stream(factor=2, display=[1280, 960],
            cascade_folder="./cascades/", cam=2, framerate=21,
            pos=False, detect=2):
