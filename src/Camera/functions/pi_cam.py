@@ -1,5 +1,8 @@
 """helps simply setting up a pi_cam for use"""
 from cv2 import VideoCapture
+from Camera.camera import Camera
+from libs.decorators import deprecated
+
 
 def gstreamer_pipeline(
     capture_res=(3264, 2464),  # pi cam resolution
@@ -9,7 +12,7 @@ def gstreamer_pipeline(
 ):
     """
     sets up a string to enable the picam
-    
+
     Parameters
     ----------
     capture_res:tuple
@@ -22,7 +25,7 @@ def gstreamer_pipeline(
         the number of frames returned
     flip_method:int
         whether to flip the frame
-    
+
     Returns
     -------
     str
@@ -48,17 +51,18 @@ def gstreamer_pipeline(
     )
 
 
+@deprecated(Camera)
 def cam_setup(setup=1, framerate=21):
     """
     returns a pi_cam setup
-    
+
     Parameters
     ----------
     setup:int
         a integer indicating a predefined setup
     framerate:int
         the number of frames per second
-    
+
     Returns
     -------
     str
