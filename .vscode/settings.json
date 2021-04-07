@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "Scripts\\python.exe",
+    "python.pythonPath": "C:\\Users\\Philip Bollen\\.conda\\envs\\fout-detectie\\python.exe",
     "python.testing.unittestArgs": [
         "-v",
         "-s",
@@ -15,5 +15,13 @@
         "Ilionx",
         "numpy"
     ],
-    "restructuredtext.confPath": "${workspaceFolder}\\dox\\source"
+    "restructuredtext.confPath": "${workspaceFolder}\\dox\\source",
+    "python.linting.pylintEnabled": false,
+    "python.linting.pylamaEnabled": true,
+    "python.linting.enabled": true,
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.pylintrc": true,
+        "**/Scripts": true
+    }
 }

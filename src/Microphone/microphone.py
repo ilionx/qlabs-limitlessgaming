@@ -9,7 +9,7 @@ from scipy.fft import rfft
 class Microphone:
     """
     This class provides a simple interface to the Microphone
-    
+
     Attributes
     ----------
     sample_rate:int
@@ -132,7 +132,7 @@ class Microphone:
     def callback_function(self, inputdata, _outdata, _frames, _time, status):
         """
         This function will be called when the stream has received data
-        
+
         Parameters
         ----------
         inputdate: list
@@ -156,7 +156,7 @@ class Microphone:
     def stream(self, callback_function=None):
         """
         This function will receive data from the audio device
-        
+
         Parameters
         ----------
         callback_function: function

@@ -9,7 +9,7 @@ def print_on_current_line(*args):
     Parameters
     ----------
     *args
-        a set of arguments to print on the current line 
+        a set of arguments to print on the current line
     """
     print(*args, end=20 * " " + "\r")
 

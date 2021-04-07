@@ -10,19 +10,19 @@ from sklearn.neighbors import KNeighborsClassifier as KNC
 def predict(knc_model: KNC, mfcc_sample: list):
     """
     make a prediction with the given model
-    
+
     Parameters
     ----------
     knc_model: KNC
         the model which will be predict
     mfcc_sample: list
         the sample which will be used as input for the prediction
-    
+
     Returns
     -------
     prediction:string
         the name of the sound that the model predicts
-    
+
     Example
     -------
     >>> function name(arguments)
@@ -34,7 +34,7 @@ def predict(knc_model: KNC, mfcc_sample: list):
 def save_model(model_to_save: KNC, filename: str):
     """
     save the model to a file for later use
-    
+
     Parameters
     ----------
     model_to_save: KNC
@@ -50,12 +50,12 @@ def save_model(model_to_save: KNC, filename: str):
 def load_model(filename: str) -> KNC:
     """
     load a knc model from a file
-    
+
     Parameters
     ----------
     filename: str
         the name of the file containing the model
-    
+
     Returns
     -------
     loaded_model:KNC
@@ -70,14 +70,14 @@ def load_model(filename: str) -> KNC:
 def model_score(knc_model: KNC, mfcc_samples):
     """
     get the accuracy of the given model
-    
+
     Parameters
     ----------
     knc_model: KNC
         the model of which the score is computed
     mfcc_samples: list
         the samples with which the score is computed
-    
+
     Returns
     -------
     score:float
@@ -90,12 +90,12 @@ def load_all_training_data(training_data_folder_name: str):
     """
     loads all data classified in with the name of the
     folder as the class, and the files as the examples
-    
+
     Parameters
     ----------
     training_data_folder_name: str
         the name of the folder containing, subfolders with training data
-    
+
     Returns
     -------
     training_data: list
@@ -113,6 +113,7 @@ def load_all_training_data(training_data_folder_name: str):
     os.chdir("..")
     return training_data
 
+
 def split_data(data_to_split):
     """
     Split training data into classes and data
@@ -121,7 +122,7 @@ def split_data(data_to_split):
     ----------
     data_to_split: list
         a list which contains training data and classes
-    
+
     Returns
     -------
     (classes, data): tuple
@@ -138,12 +139,12 @@ def split_data(data_to_split):
 def reshape(mfcc, size: int):
     """
     reshapes a mfcc to a given size
-    
+
     Parameters
     ----------
     mfcc: list
         this is a given sound sample, which needs to be transformed
-    
+
     Returns
     -------
     new_mfcc:list
@@ -173,12 +174,12 @@ def reshape(mfcc, size: int):
 def load_training_data(training_data_folder_name: str, ret_length=False):
     """
     loads training data from the given file name
-    
+
     Parameters
     ----------
     training_data_folder_name: str
         the name of the folder, which contains multiple training data files
-    
+
     Returns
     -------
     (class, data):tuple
@@ -212,12 +213,12 @@ def load_training_data(training_data_folder_name: str, ret_length=False):
 def load_training_file(training_data_file_name: str, ret_length=False):
     """
     loads training data from the given file name
-    
+
     Parameters
     ----------
     training_data_file_name: str
         the name of the data file
-    
+
     Returns
     -------
     (classname, mfcc):tuple
@@ -234,15 +235,15 @@ def load_training_file(training_data_file_name: str, ret_length=False):
         return (training_data_file_name, mfcc)
 
 
-def transform_data(data_to_transform:list):
+def transform_data(data_to_transform: list):
     """
     Transforms data_to_transform from a 2d array to a 1d array
-    
+
     Parameters
     ----------
     data_to_transform: list
         the data which needs to be transformed
-    
+
     Returns
     -------
     new_data:list
@@ -257,7 +258,7 @@ def transform_data(data_to_transform:list):
 def train_model(knc_model: KNC, training_data: list, training_classes: list):
     """
     Trains a given model with given data
-    
+
     Parameters
     ----------
     knc_model: KNC

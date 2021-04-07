@@ -34,12 +34,12 @@ class MultiSwitchIn:
     def check(self):
         """
         checks the input of all the pins
-        
+
         Parameters
         ----------
         parameter: variable type
             parameter description
-        
+
         Returns
         -------
         return variable:variable type
@@ -85,12 +85,12 @@ class MultiSwitchOut:
     def send(self, pin1, pin2, pin3):
         """
         sends output to the corresponding pins
-        
+
         Parameters
         ----------
         parameter: variable type
             parameter description
-        
+
         Returns
         -------
         return variable:variable type

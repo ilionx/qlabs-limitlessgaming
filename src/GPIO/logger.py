@@ -10,12 +10,12 @@ class Logger:
     ======
     By default the log files name is `log.csv`
 
-    another file can be used, it's plain text format  
+    another file can be used, it's plain text format
 
 
-    By default the time format is the unix method, the amount of seconds since the epoch  
+    By default the time format is the unix method, the amount of seconds since the epoch
 
-    for another format the python datetime format is used instead.  
+    for another format the python datetime format is used instead.
 
     Datetime timeformat
     -------------------
@@ -68,7 +68,7 @@ class Logger:
     def _log_raw(self, message):
         """
         Log a message with the Unix timestamp
-        
+
         parameters
         ----------
         message:str
@@ -81,7 +81,7 @@ class Logger:
     def _log_format(self, message):
         """
         Log a message with a custom datetime format
-        
+
         parameters
         ----------
         message:str
@@ -94,7 +94,7 @@ class Logger:
     def log(self, message):
         """
         Public log method, this method determines if the time format is set
-        
+
         parameters
         ----------
         message:str

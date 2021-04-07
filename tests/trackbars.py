@@ -1,9 +1,8 @@
+import numpy as np
+import cv2
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../src'))
-
-import cv2
-import numpy as np
 
 
 def nothing(x):
@@ -20,15 +19,17 @@ cv2.createTrackbar("saturationHigh", "trackbars", 255, 255, nothing)
 cv2.createTrackbar("valueLow", "trackbars", 100, 255, nothing)
 cv2.createTrackbar("valueHigh", "trackbars", 100, 255, nothing)
 
-### Select an image for which you'd like to check the HSV values
-image = cv2.imread("tests/assets/smarties.bmp")
+# Select an image for which you'd like to check the HSV values
+camera = cv2.VideoCapture(0)
+# image = cv2.imread("tests/assets/smarties.bmp")
 # image = cv2.imread("tests/assets/smarties.jpg")
 # image = cv2.imread("tests/assets/flower_contour.jpg")
 
-hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 running = True
 while running:
+    _, image = camera.read()
     cv2.imshow("smarties", image)
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
     hLow = cv2.getTrackbarPos("hueLow", "trackbars")
     hHigh = cv2.getTrackbarPos("hueHigh", "trackbars")
@@ -46,3 +47,4 @@ while running:
     if cv2.waitKey(1) == ord('q'):
         running = False
 cv2.destroyAllWindows()
+camera.release()

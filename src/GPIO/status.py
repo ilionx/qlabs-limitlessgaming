@@ -4,7 +4,7 @@ import GPIO.rgb_led as rgb
 class Status:
     """
     This class handles a status events for the system
-    
+
     Attributes
     ----------
     possible_states:tuple
@@ -12,8 +12,8 @@ class Status:
     status_codes:tuple
         a conversion from `status:str` to `status:(int,int,int)`
     status
-        the current state of the device 
-    
+        the current state of the device
+
     Methods
     -------
     set_status(status)
@@ -48,7 +48,7 @@ class Status:
     def set_status(self, status):
         """
         sets the state of the device to `status`
-        
+
         parameters
         ----------
         status: str
@@ -62,7 +62,7 @@ class Status:
     def get_status(self):
         """
         return the state of the device
-        
+
         Returns
         -------
         str

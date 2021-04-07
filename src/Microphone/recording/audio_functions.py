@@ -24,7 +24,7 @@ def tone_generater(duration, sample_rate, freq):
 
     Example
     -------
-    >>> tone_generater(0.02, 44100, 250)                         
+    >>> tone_generater(0.02, 44100, 250)
     array([ 0.00000000e+00,  3.56114331e-02,  7.11776904e-02,  1.06653653e-01,
         ...
         -7.11776904e-02, -3.56114331e-02])
