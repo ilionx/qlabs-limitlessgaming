@@ -1,8 +1,9 @@
 """The main file"""
 import sys
-from Camera.functions.open_face import *
-from Camera.functions.pi_cam import *
-from Camera.functions.my_functions import *
+from time import time
+from Camera.functions.open_face import stream
+from libs.util import print_on_current_line
+from UI.server.app import app
 try:
     from GPIO.rgb_led import *
     from GPIO.switch import *
@@ -10,12 +11,13 @@ try:
 except ImportError as err:
     print(err)
     GPIO_enabled = False
-from Microphone.knn_classifier import *
-from Microphone.microphone import *
+from Microphone.microphone import Microphone
 
 OPTIONS = {"cam": ["-c", "--camera"], "mic": ["-m", "--microphone"]}
 SETTINGS = {"cam": False, "mic": False}
 
+# TODO:replace with config file
+app.run()
 if __name__ == "__main__":
     for x in sys.argv:
         if x[0] == "-":
@@ -40,7 +42,7 @@ if __name__ == "__main__":
                 red, yellow, orange = switches.Check()  # type: ignore
 
                 print_on_current_line(
-                    f"Red:{not red}, Yellow:{not yellow}, Orange:{not orange} time:{t()}")
+                    f"Red:{not red}, Yellow:{not yellow}, Orange:{not orange} time:{time()}")
                 if not led.on:
                     led.Light(not red, not yellow, not orange)
     elif SETTINGS["mic"]:
