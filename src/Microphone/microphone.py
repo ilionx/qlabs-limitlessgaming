@@ -1,8 +1,14 @@
 """This module implements an microphone interface"""
-import time as t
+from time import time
 
 import numpy as np
-import sounddevice as sd
+try:
+    IMPORT_ERROR = False
+    import sounddevice as sd
+except Exception as e:
+    IMPORT_ERROR = True
+    print(e)
+
 from scipy.fft import rfft
 
 
@@ -164,14 +170,15 @@ class Microphone:
         """
         if callback_function is None:
             callback_function = self.callback_function
-        self.start = t.time()
-        stream = sd.Stream(samplerate=self.sample_rate, channels=1,
-                           callback=callback_function, blocksize=self.block_size)
-        with stream:
-            while self.running:
-                if t.time() - self.start > self.duration:
-                    self.running = False
-                pass
+        self.start = time()
+        if not IMPORT_ERROR:
+            stream = sd.Stream(samplerate=self.sample_rate, channels=1,
+                               callback=callback_function, blocksize=self.block_size)
+            with stream:
+                while self.running:
+                    if time() - self.start > self.duration:
+                        self.running = False
+                    pass
 
 
 # Main
