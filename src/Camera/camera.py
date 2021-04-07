@@ -1,6 +1,10 @@
-from cv2 import VideoCapture, destroyAllWindows, imencode, imshow, waitKey
+from cv2 import (COLOR_BGR2HSV, VideoCapture, cvtColor, destroyAllWindows,
+                 imencode, inRange)
+from numpy import array
+from libs.decorators import singleton
 
 
+@singleton
 class Camera:
     """Simplify camera access for end users
 
@@ -18,9 +22,11 @@ class Camera:
         show a frame in a window
     """
 
-    def __init__(self):
-        self.camera = VideoCapture(0)
-        self.running = True
+    def __init__(self, camera=None):
+        if camera is None:
+            self.camera = VideoCapture(0)
+        else:
+            self.camera = camera
 
     def __del__(self):
         self.camera.release()
@@ -37,33 +43,61 @@ class Camera:
         _, frame = self.camera.read()
         return frame
 
-    def show(self, frame):
-        """Show a frame (which can be updated) in a seperate window
+    def __call__(self):
+        return self.read()
 
-        Parameters
-        ----------
-        frame
-            a frame captured from the camera
-        """
-        imshow("Display", frame)
-        if waitKey(1) == ord("q"):  # Stop the camera if "q" is pressed
-            self.running = False
 
-    def read_jpg(self):
-        """Encode a raw frame to jpg format to show on a website
+def to_jpg(frame):
+    """Encode a raw frame to jpg format to show on a website
 
-        Parameters
-        ----------
-        frame
-            a frame in raw format
+    Parameters
+    ----------
+    frame
+        a frame in raw format
 
-        Returns
-        -------
-        list
-            a frame in jpg format
-        """
-        _, jpeg = imencode('.jpg', self.read())
-        return jpeg.tobytes()
+    Returns
+    -------
+    list
+        a frame in jpg format
+    """
+    _, jpeg = imencode('.jpg', frame)
+    return jpeg.tobytes()
+
+
+def to_hsv(frame):
+    """Turn a given frame into a HSV colored frame
+
+    Parameters
+    ----------
+    frame
+        a frame in raw format
+
+    Returns
+    -------
+    list
+        a frame in hsv format
+    """
+    return cvtColor(frame, COLOR_BGR2HSV)
+
+
+def create_mask(frame, lower_bound, upper_bound):
+    """Use the upper-and lower-bound to create a mask
+
+    Parameters
+    ----------
+    frame
+        the frame for which to create the mask
+    lower_bound
+        the lower-bound values in HSV
+    upper_bound
+        the upper-bound values in HSV
+
+    Returns
+    -------
+    list
+        a mask for the frame
+    """
+    return inRange(frame, array(lower_bound), array(upper_bound))
 
 
 if __name__ == "__main__":

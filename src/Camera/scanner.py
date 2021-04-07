@@ -1,6 +1,6 @@
-from numpy import array
 from cv2 import (CHAIN_APPROX_SIMPLE, COLOR_BGR2HSV, RETR_EXTERNAL,
                  contourArea, cvtColor, findContours, inRange)
+from numpy import array
 
 
 class Scanner:
