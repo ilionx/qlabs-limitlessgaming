@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Limitless Gaming - Index Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <a class="active" href="{{ url_for('index_page') }}">Home <i class="fa fa-home"></i></a>
+        <a href="{{ url_for('dashboard_page') }}">Dashboard <i class="fa fa-dashboard"></i></a>
+        <a href="{{ url_for('configuration_page') }}">Instellingen <i class="fa fa-cogs"></i></a>
+    </div>
+    <h1>
+        Hallo daar!
+    </h1>
+    <p>Momenteel hebben we maar twee pagina's</p>
+    <div class="row">
+        <a href="{{ url_for('dashboard_page') }}">
+            <div class="item">
+                Dashboard
+            </div>
+        </a>
+        <a href="{{ url_for('configuration_page') }}">
+            <div class="item">
+                Instellingen
+            </div>
+        </a>
+    </div>
+    <p>Dit wordt de omgeving waarin de gebruiker alles moet kunnen instellen, en zonodig oplaan of exporteren</p>
+</body>
+
+</html>

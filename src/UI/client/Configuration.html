@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Limitless Gaming - Index Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        let xhr = new XMLHttpRequest();
+$(() => {
+    $("#hue-slider-range").slider({
+        range: true,
+        min: 0,
+        max: 179,
+        values: [0, 179],
+        slide: (event, ui) => {
+            xhr.open(
+                "GET",
+                "{{ url_for('configuration_API') }}?hueLow=" + ui.values[0] + "&hueHigh=" +
+                ui.values[1]
+            );
+            xhr.send();
+        }
+    });
+});
+$(() => {
+    $("#sat-slider-range").slider({
+        range: true,
+        min: 0,
+        max: 255,
+        values: [0, 255],
+        slide: (event, ui) => {
+            xhr.open(
+                "GET",
+                "{{ url_for('configuration_API') }}?saturationLow=" + ui.values[0] +
+                "&saturationHigh=" + ui.values[1]
+            );
+            xhr.send();
+        }
+    });
+});
+$(() => {
+    $("#val-slider-range").slider({
+        range: true,
+        min: 0,
+        max: 255,
+        values: [0, 255],
+        slide: (event, ui) => {
+            xhr.open(
+                "GET",
+                "{{ url_for('configuration_API') }}?valueLow=" + ui.values[0] +
+                "&valueHigh=" + ui.values[1]
+            );
+            xhr.send();
+        }
+    });
+});
+    </script>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index_page') }}">Home <i class="fa fa-home"></i></a>
+        <a href="{{ url_for('dashboard_page') }}">Dashboard <i class="fa fa-dashboard"></i></a>
+        <a class="active" href="{{ url_for('configuration_page') }}">Instellingen <i class="fa fa-cogs"></i></a>
+    </div>
+    <h1>
+        Configuration Page
+    </h1>
+    <img id="bg" src="{{ url_for('mask_video') }}" />
+    <p id="hue">Hue</p>
+    <div id="hue-slider-range" style="width: 500px;"></div>
+    <p id="sat">Saturation</p>
+    <div id="sat-slider-range" style="width: 500px;"></div>
+    <p id="val">Value</p>
+    <div id="val-slider-range" style="width: 500px;"></div>
+    <!-- <script src="{{ url_for('static', filename='js/Configuration.js') }}"></script> -->
+</body>
+
+</html>
