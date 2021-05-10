@@ -25,3 +25,13 @@ def get_time():
     """
     datetime_string = str(datetime.now().time())[:8]
     return datetime_string
+
+
+def debug(*args, **kwargs):
+    print("[ DEBUG  - {d}:{d}:{d}]".format(datetime.now().hour,
+          datetime.now().minute, datetime.now().second), *args, **kwargs)
+
+
+def warning(*args, **kwargs):
+    print("[WARNING - {}:{}:{}]".format(datetime.now().hour,
+          datetime.now().minute, datetime.now().second), *args, **kwargs)
