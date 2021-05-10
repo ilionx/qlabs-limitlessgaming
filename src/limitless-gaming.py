@@ -54,3 +54,4 @@ if __name__ == "__main__":
                 objects = face_cascade_scanner.scan(frame)
         if USE_MICROPHONE:
             pass
+        # TODO: handle triggers
