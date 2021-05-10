@@ -1,9 +1,11 @@
+from libs.util import warning
+
+
 def deprecated(new_function):
     def inner_function(func):
         def wrapper(*args, **kwargs):
-            print(
-                "[WARNING]: this function is deprecated please use: {}"
-                .format(new_function.__name__))
+            warning("This function is deprecated please use: {}"
+                    .format(new_function.__name__))
             func(*args, **kwargs)
         return wrapper
 
