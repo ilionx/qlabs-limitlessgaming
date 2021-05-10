@@ -1,3 +1,4 @@
+import logging
 from flask import Flask, request, jsonify, render_template, redirect
 from flask.helpers import url_for
 from flask.wrappers import Response
@@ -8,6 +9,8 @@ app = Flask(__name__,
             static_url_path="",
             static_folder=PATH_TO_INDEX_PAGE+"/static",
             template_folder=PATH_TO_INDEX_PAGE)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 configuration_settings = [{"hueLow": 0, "hueHigh": 179,
                            "saturationLow": 0, "saturationHigh": 255,
