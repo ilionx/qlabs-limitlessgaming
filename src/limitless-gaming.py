@@ -1,50 +1,56 @@
 """The main file"""
-import sys
-from time import time
-from Camera.functions.open_face import stream
-from libs.util import print_on_current_line
-from UI.server.app import app
-try:
-    from GPIO.rgb_led import *
-    from GPIO.switch import *
-    GPIO_enabled = True
-except ImportError as err:
-    print(err)
-    GPIO_enabled = False
-from Microphone.microphone import Microphone
+from config.config_manager import ConfigManager
+from libs.util import debug, warning
 
-OPTIONS = {"cam": ["-c", "--camera"], "mic": ["-m", "--microphone"]}
-SETTINGS = {"cam": False, "mic": False}
+system_config = ConfigManager()
 
-# TODO:replace with config file
-app.run()
+USE_APP = system_config["interface"]["use"]
+if USE_APP:
+    from UI.server.app import app
+    debug("Starting server")
+    app.run(port=80)
+    debug("Running server on \"http://localhost/\"")
+
+USE_CAMERA = system_config["camera"]["use"]
+if USE_CAMERA:
+    from Camera.camera import Camera
+    camera = Camera()
+
+    USE_CAMERA_CONTOURS = system_config["camera"]["contours"]
+    USE_CAMERA_OBJECTS = system_config["camera"]["objects"]
+    if USE_CAMERA_CONTOURS:
+        from Camera.scanner import ContourScanner
+        contour_scanner = ContourScanner()
+    if USE_CAMERA_OBJECTS:
+        from Camera.scanner import CascadeScanner
+        face_cascade_scanner = CascadeScanner(
+            "./cascades/haarcascade_frontalface_default.xml")
+
+USE_GPIO = system_config["gpio"]["use"]
+if USE_GPIO:
+    try:
+        from GPIO.switch import MultiSwitchIn, MultiSwitchOut, SingleSwitchOut  # noqa # pylint: disable=unused-import
+        from GPIO.logger import Logger  # noqa # pylint: disable=unused-import
+        from GPIO.status import Status  # noqa # pylint: disable=unused-import
+        from GPIO.rgb_led import RGBled  # noqa # pylint: disable=unused-import
+    except Exception as e:
+        warning("Could not import Jetson GPIO library")
+        warning(e)
+
+USE_MICROPHONE = system_config["microphone"]["use"]
+if USE_MICROPHONE:
+    from Microphone.microphone import Microphone
+    microphone = Microphone()
+
 if __name__ == "__main__":
-    for x in sys.argv:
-        if x[0] == "-":
-            for s in OPTIONS:
-                if x in OPTIONS[s]:
-                    SETTINGS[s] = True
-    if SETTINGS["cam"]:
-        input_stream = stream(detect=2, framerate=5)
-        if GPIO_enabled:
-            switches = MultiSwitchIn(19, 21, 23)
-        FILMING = True
-        while FILMING:
-            FILMING, shoot, passen = next(input_stream)
-            if GPIO_enabled:
-                if shoot:
-                    now = time.time()
-                    led.On()
-                elif passen:
-                    led.Light(1, 0, 1)
-                else:
-                    led.Off()
-                red, yellow, orange = switches.Check()  # type: ignore
 
-                print_on_current_line(
-                    f"Red:{not red}, Yellow:{not yellow}, Orange:{not orange} time:{time()}")
-                if not led.on:
-                    led.Light(not red, not yellow, not orange)
-    elif SETTINGS["mic"]:
-        mic = Microphone()
-        mic.stream()
+    running = True
+    while running:
+        if USE_CAMERA and (USE_CAMERA_CONTOURS or USE_CAMERA_OBJECTS):
+            frame = camera.read()
+            if USE_CAMERA_CONTOURS:
+                contours = contour_scanner.scan(frame)
+            if USE_CAMERA_OBJECTS:
+                objects = face_cascade_scanner.scan(frame)
+        if USE_MICROPHONE:
+            pass

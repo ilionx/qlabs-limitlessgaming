@@ -1,0 +1,16 @@
+{
+    "camera": {
+        "use": true,
+        "contours": true,
+        "objects": true
+    },
+    "microphone": {
+        "use": true
+    },
+    "interface": {
+        "use": true
+    },
+    "gpio": {
+        "use": false
+    }
+}
