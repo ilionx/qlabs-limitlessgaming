@@ -1,13 +1,17 @@
 """Simple wrapper for using open-cv"""
+
+print(
+    "The functions in this file are deprecated, and should be replaced with there new variants")  # nopep8
+
 import cv2
 import numpy as np
 from Camera.functions.pi_cam import cam_setup
 from libs.decorators import deprecated
-from Camera.scanner import Scanner
+from Camera.scanner import CascadeScanner, ContourScanner
 from Camera.camera import Camera
 
 
-@deprecated(Scanner.filter_contours)
+@deprecated(ContourScanner.filter_contours)
 def filter_contour(contour_list, size=20):
     """
     Filter a array of contours based on there area
@@ -42,7 +46,7 @@ def filter_contour(contour_list, size=20):
     return filtered_contour_list
 
 
-@deprecated(Scanner.find_contours)
+@deprecated(ContourScanner.find_contours)
 def find_contour(frame, display_width, settings=(41, 84, 40, 255, 79, 255),
                  show=False, pos=False,
                  return_all_contours=True):
@@ -96,6 +100,7 @@ def find_contour(frame, display_width, settings=(41, 84, 40, 255, 79, 255),
     return trigger
 
 
+@deprecated(CascadeScanner.detect)
 def find_cascade(cascade_object, frame, scale_factor=2.5, min_neighbors=5,
                  draw=False, convert_image=False, start_x=0, start_y=0,
                  color=(255, 0, 0), draw_frame=None):
